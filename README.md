@@ -24,6 +24,7 @@ To use this dashboard:
 
 That's it.
 
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/f3f8d4e3-0387-4bf9-a915-3afd9cf822b3" />
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/65c68be1-9887-48ce-bf7f-c3d5dbad3a96" />
+
 
 
