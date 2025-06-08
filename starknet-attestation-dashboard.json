@@ -19,7 +19,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 14,
+  "id": 15,
   "links": [],
   "panels": [
     {
@@ -322,6 +322,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -374,7 +378,7 @@
           "refId": "A"
         }
       ],
-      "title": "Attestation Success Rate",
+      "title": "Attestation Success Rate %",
       "type": "stat"
     },
     {
@@ -756,7 +760,7 @@
           "refId": "A"
         }
       ],
-      "title": "Attest. Progress",
+      "title": "Attest. Progress %",
       "type": "stat"
     },
     {
@@ -936,7 +940,8 @@
   "schemaVersion": 41,
   "tags": [
     "starknet",
-    "validator"
+    "validator",
+    "attestation"
   ],
   "templating": {
     "list": [
@@ -987,5 +992,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 9
+  "version": 3
 }
