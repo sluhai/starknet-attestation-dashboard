@@ -9,9 +9,9 @@ It visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-a
 - Starknet latest block number
 - Epoch progress (%)
 - Blocks remaining until attestation
-- Number of submitted, confirmed, and failed attestations (time series)
+- Time since last successful attestation
 - Success rate (%)
-- Minutes since last successful attestation
+- Number of submitted, confirmed, and failed attestations (time series)
 
 ## Setup
 
