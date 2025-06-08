@@ -37,3 +37,6 @@ To use this dashboard:
 5. Select your desired network from the Network dropdown.
 
 That's it.
+
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/87bcc698-7f3b-477e-ae69-f456848564e6" />
+
