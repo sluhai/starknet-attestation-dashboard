@@ -15,6 +15,7 @@
       }
     ]
   },
+  "description": "# Starknet Attestation Dashboard\n\nThis is a Grafana dashboard for monitoring Starknet validator attestations.\n\nIt visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.\n\n**Metrics displayed**\n\n- Starknet latest block number\n- Epoch progress (%)\n- Blocks remaining until attestation\n- Time since last successful attestation\n- Success rate (%)\n- Number of submitted, confirmed, and failed attestations (time series)\n\n## Setup\n\nTo use this dashboard:\n1. Make sure your validator attestation tool is running and exposing metrics on a port (e.g., http://localhost:9095/metrics).\n2. Ensure Prometheus is scraping that endpoint.\n3. Add Prometheus as a data source in Grafana.\n4. Import the starknet-attestation-dashboard-v2.json file in your Grafana UI.\n\nThat's it.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -968,9 +969,23 @@
     "from": "now-24h",
     "to": "now"
   },
-  "timepicker": {},
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "15s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
   "timezone": "browser",
-  "title": "Validator Attestation Monitoring V4",
+  "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation-4",
-  "version": 5
+  "version": 9
 }
