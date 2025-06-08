@@ -641,7 +641,7 @@
           "refId": "A"
         }
       ],
-      "title": "Current Epoch Length",
+      "title": "Cur. Epoch Length",
       "type": "stat"
     },
     {
@@ -698,7 +698,7 @@
           "refId": "A"
         }
       ],
-      "title": "Assigned Attestation Block",
+      "title": "Assigned Block",
       "type": "stat"
     },
     {
@@ -755,7 +755,7 @@
           "refId": "A"
         }
       ],
-      "title": "Progress to Attestation (%)",
+      "title": "Attest. Progress",
       "type": "stat"
     },
     {
@@ -812,7 +812,7 @@
           "refId": "A"
         }
       ],
-      "title": "Attestations Submitted",
+      "title": "Attest. Submitted",
       "type": "stat"
     },
     {
@@ -869,7 +869,7 @@
           "refId": "A"
         }
       ],
-      "title": "Attestations Confirmed",
+      "title": "Attest. Confirmed",
       "type": "stat"
     },
     {
@@ -926,7 +926,7 @@
           "refId": "A"
         }
       ],
-      "title": "Attestation Failures",
+      "title": "Attest. Failures",
       "type": "stat"
     }
   ],
@@ -972,5 +972,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring V4",
   "uid": "starknet-attestation-4",
-  "version": 4
+  "version": 5
 }
