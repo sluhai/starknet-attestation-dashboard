@@ -4,7 +4,7 @@ This is a Grafana dashboard for monitoring Starknet validator attestations.
 
 It visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.
 
-## The following metrics are displayed:
+## Metrics displayed:
 
 **Starknet latest block number**
 
