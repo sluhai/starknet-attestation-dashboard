@@ -20,7 +20,6 @@ To use this dashboard:
 2. Ensure Prometheus is scraping that endpoint.
 3. Add Prometheus as a data source in Grafana.
 4. Import the starknet-attestation-dashboard-v2.json file in your Grafana UI.
-5. Select your desired network from the Network dropdown.
 
 That's it.
 
