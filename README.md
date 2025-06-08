@@ -19,7 +19,7 @@ To use this dashboard:
 1. Make sure your validator attestation tool is running and exposing metrics on a port (e.g., http://localhost:9095/metrics).
 2. Ensure Prometheus is scraping that endpoint.
 3. Add Prometheus as a data source in Grafana.
-4. Import the starknet-attestation-dashboard-v2.json file in your Grafana UI.
+4. Import the starknet-attestation-dashboard.json file in your Grafana UI.
 
 That's it.
 
