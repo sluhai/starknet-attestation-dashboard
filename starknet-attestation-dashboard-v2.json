@@ -433,7 +433,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 11,
+        "h": 8,
         "w": 24,
         "x": 0,
         "y": 5
@@ -497,10 +497,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 0,
-        "y": 16
+        "y": 13
       },
       "id": 9001,
       "options": {
@@ -554,10 +554,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 3,
-        "y": 16
+        "y": 13
       },
       "id": 9002,
       "options": {
@@ -611,10 +611,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 6,
-        "y": 16
+        "y": 13
       },
       "id": 9003,
       "options": {
@@ -668,10 +668,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 9,
-        "y": 16
+        "y": 13
       },
       "id": 9004,
       "options": {
@@ -725,10 +725,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 12,
-        "y": 16
+        "y": 13
       },
       "id": 9005,
       "options": {
@@ -782,10 +782,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 15,
-        "y": 16
+        "y": 13
       },
       "id": 9006,
       "options": {
@@ -839,10 +839,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 18,
-        "y": 16
+        "y": 13
       },
       "id": 9007,
       "options": {
@@ -896,10 +896,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 21,
-        "y": 16
+        "y": 13
       },
       "id": 9008,
       "options": {
@@ -972,5 +972,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring V4",
   "uid": "starknet-attestation-4",
-  "version": 2
+  "version": 4
 }
