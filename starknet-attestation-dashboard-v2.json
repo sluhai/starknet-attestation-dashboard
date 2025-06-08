@@ -359,7 +359,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 11,
         "w": 24,
         "x": 0,
         "y": 5
@@ -442,5 +442,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring V2",
   "uid": "starknet-attestation-2",
-  "version": 4
+  "version": 5
 }
