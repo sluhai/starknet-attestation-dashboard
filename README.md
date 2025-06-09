@@ -1,4 +1,4 @@
-# Starknet Attestation Dashboard
+# Starknet Validator Attestation Monitoring Dashboard
 
 This is a Grafana dashboard for monitoring Starknet validator attestations.
 
