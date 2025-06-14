@@ -429,8 +429,12 @@
                 "color": "red"
               },
               {
-                "color": "green",
+                "color": "#EAB839",
                 "value": 99
+              },
+              {
+                "color": "green",
+                "value": 100
               }
             ]
           },
@@ -1002,5 +1006,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 37
+  "version": 38
 }
