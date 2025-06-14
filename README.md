@@ -39,7 +39,8 @@ To use this dashboard:
 
 That's it.
 
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/c9bd822d-5cd5-43a0-af87-84d33a7e65e2" />
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/279c0520-ce58-4e02-a0a0-f1f1191edfbd" />
+
 
 
 
