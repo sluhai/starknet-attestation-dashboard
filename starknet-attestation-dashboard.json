@@ -535,7 +535,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
+        "w": 4,
         "x": 0,
         "y": 13
       },
@@ -594,8 +594,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 3,
+        "w": 4,
+        "x": 4,
         "y": 13
       },
       "id": 9002,
@@ -654,7 +654,7 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 6,
+        "x": 8,
         "y": 13
       },
       "id": 9003,
@@ -712,8 +712,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 9,
+        "w": 4,
+        "x": 11,
         "y": 13
       },
       "id": 9004,
@@ -744,65 +744,6 @@
         }
       ],
       "title": "Assigned Block",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "beo6ke2svn08wb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 12,
-        "y": 13
-      },
-      "id": 9005,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "(validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"} - validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}) / (validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"} - validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}) * 100",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Attest. Progress %",
       "type": "stat"
     },
     {
@@ -987,7 +928,7 @@
     }
   ],
   "preload": false,
-  "refresh": "30s",
+  "refresh": "15s",
   "schemaVersion": 41,
   "tags": [
     "starknet",
@@ -1027,7 +968,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1048,5 +989,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 23
+  "version": 25
 }
