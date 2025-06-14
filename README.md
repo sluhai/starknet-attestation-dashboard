@@ -43,7 +43,8 @@ To use this dashboard:
 
 That's it.
 
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/279c0520-ce58-4e02-a0a0-f1f1191edfbd" />
+<img width="1469" alt="image" src="https://github.com/user-attachments/assets/15e52164-064a-4dbb-a46f-bc7ae1c6d416" />
+
 
 
 
