@@ -33,8 +33,9 @@ To use this dashboard:
         target_label: exported_network
         replacement: SN_SEPOLIA
   ```
-3. Add Prometheus as a data source in Grafana.
-4. Import the starknet-attestation-dashboard.json file in your Grafana UI.
+3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.
+4. Add Prometheus as a data source in Grafana.
+5. Import the starknet-attestation-dashboard.json file in your Grafana UI.
 
 That's it.
 
