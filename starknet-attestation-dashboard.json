@@ -684,7 +684,7 @@
           "refId": "A"
         }
       ],
-      "title": "Cur. Epoch Length",
+      "title": "Epoch Length",
       "type": "stat"
     },
     {
@@ -1048,5 +1048,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 22
+  "version": 23
 }
