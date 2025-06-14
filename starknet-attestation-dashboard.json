@@ -98,7 +98,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "up{job=\"starknet-attestation\"}",
+          "expr": "up{job=\"starknet-attestation\",exported_network=~\"$exported_network\"}",
           "range": true,
           "refId": "A"
         }
@@ -107,6 +107,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -149,7 +153,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_starknet_latest_block_number{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -157,6 +163,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -203,7 +213,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "((validator_attestation_starknet_latest_block_number{network=~\"$network\"} - validator_attestation_current_epoch_starting_block_number{network=~\"$network\"}) / validator_attestation_current_epoch_length{network=~\"$network\"}) * 100",
+          "editorMode": "code",
+          "expr": "((validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"} - validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}) / validator_attestation_current_epoch_length{exported_network=~\"$exported_network\"}) * 100",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -211,6 +223,10 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -253,7 +269,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_current_epoch_assigned_block_number{network=~\"$network\"} - validator_attestation_starknet_latest_block_number{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"} - validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -314,7 +332,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "(time() - validator_attestation_last_attestation_timestamp_seconds{network=~\"$network\"}) / 60",
+          "editorMode": "code",
+          "expr": "(time() - validator_attestation_last_attestation_timestamp_seconds{exported_network=~\"$exported_network\"}) / 60",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -374,7 +394,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "(increase(validator_attestation_attestation_confirmed_count{network=~\"$network\"}[$__range]) / increase(validator_attestation_attestation_submitted_count{network=~\"$network\"}[$__range])) * 100",
+          "editorMode": "code",
+          "expr": "(increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[$__range]) / increase(validator_attestation_attestation_submitted_count{exported_network=~\"$exported_network\"}[$__range])) * 100",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -382,6 +404,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -460,18 +486,24 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_attestation_submitted_count{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_attestation_submitted_count{exported_network=~\"$exported_network\"}",
           "legendFormat": "Submitted",
+          "range": true,
           "refId": "A"
         },
         {
-          "expr": "validator_attestation_attestation_confirmed_count{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}",
           "legendFormat": "Confirmed",
+          "range": true,
           "refId": "B"
         },
         {
-          "expr": "validator_attestation_attestation_failure_count{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_attestation_failure_count{exported_network=~\"$exported_network\"}",
           "legendFormat": "Failures",
+          "range": true,
           "refId": "C"
         }
       ],
@@ -528,7 +560,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_current_epoch_starting_block_number{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -585,7 +619,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_current_epoch_id{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_id{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -642,7 +678,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_current_epoch_length{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_length{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -699,7 +737,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "validator_attestation_current_epoch_assigned_block_number{network=~\"$network\"}",
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -756,7 +796,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "(validator_attestation_starknet_latest_block_number{network=~\"$network\"} - validator_attestation_current_epoch_starting_block_number{network=~\"$network\"}) / (validator_attestation_current_epoch_assigned_block_number{network=~\"$network\"} - validator_attestation_current_epoch_starting_block_number{network=~\"$network\"}) * 100",
+          "editorMode": "code",
+          "expr": "(validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"} - validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}) / (validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"} - validator_attestation_current_epoch_starting_block_number{exported_network=~\"$exported_network\"}) * 100",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -813,7 +855,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "increase(validator_attestation_attestation_submitted_count{network=~\"$network\"}[$__range])",
+          "editorMode": "code",
+          "expr": "increase(validator_attestation_attestation_submitted_count{exported_network=~\"$exported_network\"}[$__range])",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -870,7 +914,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "increase(validator_attestation_attestation_confirmed_count{network=~\"$network\"}[$__range])",
+          "editorMode": "code",
+          "expr": "increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[$__range])",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -927,7 +973,9 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "increase(validator_attestation_attestation_failure_count{network=~\"$network\"}[$__range])",
+          "editorMode": "code",
+          "expr": "increase(validator_attestation_attestation_failure_count{exported_network=~\"$exported_network\"}[$__range])",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -959,12 +1007,17 @@
           "type": "prometheus",
           "uid": "beo6ke2svn08wb"
         },
+        "definition": "label_values(validator_attestation_starknet_latest_block_number,exported_network)",
         "includeAll": true,
         "label": "Network",
         "multi": true,
-        "name": "network",
+        "name": "exported_network",
         "options": [],
-        "query": "label_values(validator_attestation_starknet_latest_block_number, network)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values(validator_attestation_starknet_latest_block_number,exported_network)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 2,
         "type": "query"
       }
@@ -992,5 +1045,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 3
+  "version": 19
 }
