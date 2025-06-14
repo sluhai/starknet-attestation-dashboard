@@ -803,7 +803,7 @@
           "refId": "A"
         }
       ],
-      "title": "Submitted",
+      "title": "Attestations Submitted",
       "type": "stat"
     },
     {
@@ -863,7 +863,7 @@
           "refId": "A"
         }
       ],
-      "title": "Confirmed",
+      "title": "Attestations Confirmed",
       "type": "stat"
     },
     {
@@ -923,7 +923,7 @@
           "refId": "A"
         }
       ],
-      "title": "Failures",
+      "title": "Attestation Failures",
       "type": "stat"
     }
   ],
@@ -989,5 +989,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 29
+  "version": 30
 }
