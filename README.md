@@ -24,7 +24,7 @@ To use this dashboard:
 ```
 --metrics-address 127.0.0.1:9095
 ```
-5. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:
+2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:
 ```
 - job_name: "starknet-attestation"
     static_configs:
