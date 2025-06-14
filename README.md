@@ -20,8 +20,11 @@ It visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-a
 ## Setup
 
 To use this dashboard:
-1. Make sure your validator attestation tool is running and exposing metrics on a port (e.g., http://localhost:9095/metrics).
-2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:
+1. Make sure your validator attestation tool is running and exposing metrics on a port, for example:
+```
+--metrics-address 127.0.0.1:9095
+```
+5. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:
 ```
 - job_name: "starknet-attestation"
     static_configs:
@@ -36,7 +39,7 @@ To use this dashboard:
         regex: localhost:9096
         target_label: exported_network
         replacement: SN_SEPOLIA
-  ```
+```
 3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.
 4. Add Prometheus as a data source in Grafana.
 5. Import the starknet-attestation-dashboard.json file in your Grafana UI.
