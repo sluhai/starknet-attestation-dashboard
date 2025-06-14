@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "# Starknet Attestation Dashboard\n\nThis is a Grafana dashboard for monitoring Starknet validator attestations.\n\nIt visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.\n\n**Metrics displayed**\n\n- Starknet latest block number\n- Epoch progress (%)\n- Blocks remaining until attestation\n- Time since last successful attestation\n- Success rate (%)\n- Number of submitted, confirmed, and failed attestations (time series)\n\n## Setup\n\nTo use this dashboard:\n1. Make sure your validator attestation tool is running and exposing metrics on a port (e.g., http://localhost:9095/metrics).\n2. Ensure Prometheus is scraping that endpoint.\n3. Add Prometheus as a data source in Grafana.\n4. Import the starknet-attestation-dashboard-v2.json file in your Grafana UI.\n\nThat's it.",
+  "description": "# Starknet Validator Attestation Dashboard\n\nThis is a Grafana dashboard for monitoring Starknet validator attestations.\n\nIt visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.\n\n**Metrics displayed**\n\n- Starknet latest block number\n- Epoch progress (%)\n- Blocks remaining until attestation\n- Time since last successful attestation\n- Success rate (%)\n- Number of submitted, confirmed, and failed attestations (time series)\n- Epoch Start Block\n- Current Epoch ID\n- Epoch Length\n- Assigned Block\n\n## Setup\n\nTo use this dashboard:\n1. Make sure your validator attestation tool is running and exposing metrics on a port, for example:\n```\n--metrics-address 127.0.0.1:9095\n```\n2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:\n```\n- job_name: \"starknet-attestation\"\n    static_configs:\n      - targets: ['localhost:9095']\n      - targets: ['localhost:9096']\n    relabel_configs:\n      - source_labels: [__address__]\n        regex: localhost:9095\n        target_label: exported_network\n        replacement: SN_MAIN\n      - source_labels: [__address__]\n        regex: localhost:9096\n        target_label: exported_network\n        replacement: SN_SEPOLIA\n```\n3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.\n4. Add Prometheus as a data source in Grafana.\n5. Import the starknet-attestation-dashboard.json file in your Grafana UI.\n\nThat's it.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -1006,5 +1006,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 38
+  "version": 39
 }
