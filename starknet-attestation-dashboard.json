@@ -945,7 +945,7 @@
     }
   ],
   "preload": false,
-  "refresh": "15s",
+  "refresh": "30s",
   "schemaVersion": 41,
   "tags": [
     "starknet",
@@ -1006,5 +1006,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 42
+  "version": 43
 }
