@@ -23,7 +23,8 @@ To use this dashboard:
 
 That's it.
 
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/5677858a-5f81-46dc-8d66-3819b61aba43" />
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/74e4e866-3ce1-45f9-92aa-ae91f235b510" />
+
 
 
 
