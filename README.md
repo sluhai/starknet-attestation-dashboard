@@ -42,7 +42,7 @@ To use this dashboard:
 ```
 3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.
 4. Add Prometheus as a data source in Grafana.
-5. Import the 'starknet-attestation-dashboard.json' file in your Grafana UI.
+5. Import the _starknet-attestation-dashboard.json_ file in your Grafana UI.
 6. Optionally, import one of the _attestation-monitoring_ files to set up the alerts.
 
 That's it.
