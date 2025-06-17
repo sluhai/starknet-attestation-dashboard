@@ -962,10 +962,10 @@
         "allValue": ".*",
         "current": {
           "text": [
-            "SN_SEPOLIA"
+            "SN_MAIN"
           ],
           "value": [
-            "SN_SEPOLIA"
+            "SN_MAIN"
           ]
         },
         "datasource": {
@@ -989,7 +989,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -1010,5 +1010,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 53
+  "version": 54
 }
