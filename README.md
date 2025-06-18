@@ -22,9 +22,13 @@ It visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-a
 To use this dashboard:
 1. Make sure your validator attestation tool is running and exposing metrics on a port, for example:
 ```
---metrics-address 127.0.0.1:9095 # mainnet instance
---metrics-address 127.0.0.1:9096 # testnet instance
+--metrics-address 127.0.0.1:9095
 ```
+(for mainnet instance)
+```
+--metrics-address 127.0.0.1:9096
+```
+(for testnet instance)
 2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:
 ```
 - job_name: "starknet-attestation"
