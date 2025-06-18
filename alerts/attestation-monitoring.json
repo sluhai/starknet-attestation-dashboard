@@ -1,0 +1,631 @@
+{
+  "apiVersion": 1,
+  "groups": [
+    {
+      "orgId": 1,
+      "name": "attestation-monitoring",
+      "folder": "attestation-monitoring",
+      "interval": "30s",
+      "rules": [
+        {
+          "uid": "aeoxwk6f4terkb",
+          "title": "[Sepolia] Attestation Success Rate Below 100%",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "100 * (\n  validator_attestation_attestation_confirmed_count{exported_network=\"SN_SEPOLIA\"}\n  /\n  validator_attestation_attestation_submitted_count{exported_network=\"SN_SEPOLIA\"}\n)\n",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        99.99
+                      ],
+                      "type": "lte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "for": "30s",
+          "annotations": {
+            "summary": "⚠️ Attestation success rate dropped below 100% on Sepolia. Check logs or metrics."
+          },
+          "isPaused": false,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "aeoy7j3kdkwsgb",
+          "title": "[Sepolia] Last Attestation Delay",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "(time() - validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_SEPOLIA\"}) / 60",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        35
+                      ],
+                      "type": "gte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "Last attestation happened over 35 minutes ago on Sepolia.\nCheck if the attestation tool is running and synced."
+          },
+          "isPaused": false,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "deoy87w3iyv40f",
+          "title": "[Sepolia] Attestation Failures Detected",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "increase(validator_attestation_attestation_failure_count{exported_network=\"SN_SEPOLIA\"}[1m])",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0.5
+                      ],
+                      "type": "gte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "🚨 Attestation Failures Detected on Sepolia.\nValidator has submitted one or more failed attestations in the last minute."
+          },
+          "isPaused": false,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "dep1h1shj9slcb",
+          "title": "[Sepolia] Attestation Service Down",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "up{job=\"starknet-attestation\", exported_network=\"SN_SEPOLIA\"}",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0.5
+                      ],
+                      "type": "lte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "❌ Attestation Service DOWN\nThe validator-attestation service is not reachable on Sepolia.\nPlease check Docker container or system service status."
+          },
+          "isPaused": false,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "aep64tltcifpcd",
+          "title": "[Mainnet] Attestation Success Rate Below 100%",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "100 * (\n  validator_attestation_attestation_confirmed_count{exported_network=\"SN_MAIN\"}\n  /\n  validator_attestation_attestation_submitted_count{exported_network=\"SN_MAIN\"}\n)\n",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        99.99
+                      ],
+                      "type": "lte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "for": "30s",
+          "annotations": {
+            "summary": "⚠️ Attestation success rate dropped below 100% on MAINNET. Check logs or metrics."
+          },
+          "isPaused": true,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "aep64znuofw1sf",
+          "title": "[Mainnet] Last Attestation Delay",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "(time() - validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_MAIN\"}) / 60",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        100
+                      ],
+                      "type": "gte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "Last attestation happened over 100 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
+          },
+          "isPaused": true,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "aep658t640we8c",
+          "title": "[Mainnet] Attestation Failures Detected",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "increase(validator_attestation_attestation_failure_count{exported_network=\"SN_MAIN\"}[1m])",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0.5
+                      ],
+                      "type": "gte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "🚨 Attestation Failures Detected on MAINNET.\nValidator has submitted one or more failed attestations in the last minute."
+          },
+          "isPaused": true,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        },
+        {
+          "uid": "dep65c9nxcb28a",
+          "title": "[Mainnet] Attestation Service Down",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 60,
+                "to": 0
+              },
+              "datasourceUid": "beo6ke2svn08wb",
+              "model": {
+                "editorMode": "code",
+                "expr": "up{job=\"starknet-attestation\", exported_network=\"SN_MAIN\"}",
+                "instant": true,
+                "intervalMs": 1000,
+                "legendFormat": "__auto",
+                "maxDataPoints": 43200,
+                "range": false,
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 0,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0.5
+                      ],
+                      "type": "lte"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": [
+                        "C"
+                      ]
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "last"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "noDataState": "Alerting",
+          "execErrState": "Alerting",
+          "annotations": {
+            "summary": "❌ Attestation Service DOWN\nThe validator-attestation service is not reachable on MAINNET.\nPlease check Docker container or system service status."
+          },
+          "isPaused": false,
+          "notification_settings": {
+            "receiver": "grafana-default-email"
+          },
+          "missing_series_evals_to_resolve": 1
+        }
+      ]
+    }
+  ]
+}
