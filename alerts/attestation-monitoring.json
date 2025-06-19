@@ -121,8 +121,7 @@
                                     "uid": "beo6ke2svn08wb"
                                 },
                                 "editorMode": "code",
-                                "expr": "validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_SEPOLIA\"} > 1\n",
-                                "hide": false,
+                                "expr": "validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_SEPOLIA\"}\n",
                                 "instant": true,
                                 "intervalMs": 1000,
                                 "legendFormat": "__auto",
@@ -188,7 +187,7 @@
                                                 1,
                                                 0
                                             ],
-                                            "type": "eq"
+                                            "type": "gt"
                                         },
                                         "operator": {
                                             "type": "and"
@@ -209,7 +208,6 @@
                                     "uid": "__expr__"
                                 },
                                 "expression": "B",
-                                "hide": false,
                                 "intervalMs": 1000,
                                 "maxDataPoints": 43200,
                                 "refId": "D",
@@ -496,8 +494,7 @@
                                     "uid": "beo6ke2svn08wb"
                                 },
                                 "editorMode": "code",
-                                "expr": "validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_MAIN\"} > 1\n",
-                                "hide": false,
+                                "expr": "validator_attestation_last_attestation_timestamp_seconds{exported_network=\"SN_MAIN\"}\n",
                                 "instant": true,
                                 "intervalMs": 1000,
                                 "legendFormat": "__auto",
@@ -563,7 +560,7 @@
                                                 1,
                                                 0
                                             ],
-                                            "type": "eq"
+                                            "type": "gt"
                                         },
                                         "operator": {
                                             "type": "and"
@@ -584,7 +581,6 @@
                                     "uid": "__expr__"
                                 },
                                 "expression": "B",
-                                "hide": false,
                                 "intervalMs": 1000,
                                 "maxDataPoints": 43200,
                                 "refId": "D",
