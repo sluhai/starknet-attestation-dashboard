@@ -420,7 +420,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=~\"$exported_network\"}, 1)) / 60\n",
+          "expr": "(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=~\"$exported_network\"}, 1)) / 60\n< 10000\n",
           "range": true,
           "refId": "A"
         }
@@ -1022,5 +1022,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 65
+  "version": 66
 }
