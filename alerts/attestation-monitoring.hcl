@@ -70,7 +70,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_SEPOLIA\\\"} > 1\\n\",\"hide\":false,\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
+      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_SEPOLIA\\\"}\\n\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
     }
     data {
       ref_id = "C"
@@ -92,7 +92,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"eq\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"hide\":false,\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
     }
 
     no_data_state  = "Alerting"
@@ -257,7 +257,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_MAIN\\\"} > 1\\n\",\"hide\":false,\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
+      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_MAIN\\\"}\\n\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
     }
     data {
       ref_id = "C"
@@ -279,7 +279,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"eq\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"hide\":false,\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
     }
 
     no_data_state  = "Alerting"
