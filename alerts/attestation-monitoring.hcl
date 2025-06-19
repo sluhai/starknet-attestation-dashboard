@@ -59,7 +59,18 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"editorMode\":\"code\",\"expr\":\"(time() - validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_SEPOLIA\\\"}) / 60\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_SEPOLIA\\\"}, 1)) / 60\\n\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+    }
+    data {
+      ref_id = "B"
+
+      relative_time_range {
+        from = 60
+        to   = 0
+      }
+
+      datasource_uid = "beo6ke2svn08wb"
+      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_SEPOLIA\\\"} > 1\\n\",\"hide\":false,\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
     }
     data {
       ref_id = "C"
@@ -71,6 +82,17 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
 
       datasource_uid = "__expr__"
       model          = "{\"conditions\":[{\"evaluator\":{\"params\":[35],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+    }
+    data {
+      ref_id = "D"
+
+      relative_time_range {
+        from = 0
+        to   = 0
+      }
+
+      datasource_uid = "__expr__"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"eq\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"hide\":false,\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
     }
 
     no_data_state  = "Alerting"
@@ -202,7 +224,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     annotations = {
       summary = "⚠️ Attestation success rate dropped below 100% on MAINNET. Check logs or metrics."
     }
-    is_paused = true
+    is_paused = false
 
     notification_settings {
       contact_point = "grafana-default-email"
@@ -224,7 +246,18 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"editorMode\":\"code\",\"expr\":\"(time() - validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_MAIN\\\"}) / 60\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_MAIN\\\"}, 1)) / 60\\n\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+    }
+    data {
+      ref_id = "B"
+
+      relative_time_range {
+        from = 60
+        to   = 0
+      }
+
+      datasource_uid = "beo6ke2svn08wb"
+      model          = "{\"datasource\":{\"type\":\"prometheus\",\"uid\":\"beo6ke2svn08wb\"},\"editorMode\":\"code\",\"expr\":\"validator_attestation_last_attestation_timestamp_seconds{exported_network=\\\"SN_MAIN\\\"} > 1\\n\",\"hide\":false,\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"B\"}"
     }
     data {
       ref_id = "C"
@@ -235,15 +268,26 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[100],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[105],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+    }
+    data {
+      ref_id = "D"
+
+      relative_time_range {
+        from = 0
+        to   = 0
+      }
+
+      datasource_uid = "__expr__"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1,0],\"type\":\"eq\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"B\",\"hide\":false,\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"D\",\"type\":\"threshold\"}"
     }
 
     no_data_state  = "Alerting"
     exec_err_state = "Alerting"
     annotations = {
-      summary = "Last attestation happened over 100 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
+      summary = "Last attestation happened over 105 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
     }
-    is_paused = true
+    is_paused = false
 
     notification_settings {
       contact_point = "grafana-default-email"
@@ -284,7 +328,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     annotations = {
       summary = "🚨 Attestation Failures Detected on MAINNET.\nValidator has submitted one or more failed attestations in the last minute."
     }
-    is_paused = true
+    is_paused = false
 
     notification_settings {
       contact_point = "grafana-default-email"
