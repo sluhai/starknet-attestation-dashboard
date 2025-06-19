@@ -361,9 +361,9 @@
                 "from": 26280000,
                 "result": {
                   "index": 0,
-                  "text": "No successful attestation"
+                  "text": "No attestation yet"
                 },
-                "to": 999999999
+                "to": null
               },
               "type": "range"
             }
@@ -1022,5 +1022,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 64
+  "version": 65
 }
