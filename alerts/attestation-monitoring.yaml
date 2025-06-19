@@ -73,13 +73,33 @@ groups:
               datasourceUid: beo6ke2svn08wb
               model:
                 editorMode: code
-                expr: (time() - validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_SEPOLIA"}) / 60
+                expr: |
+                    (time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_SEPOLIA"}, 1)) / 60
                 instant: true
                 intervalMs: 1000
                 legendFormat: __auto
                 maxDataPoints: 43200
                 range: false
                 refId: A
+            - refId: B
+              relativeTimeRange:
+                from: 60
+                to: 0
+              datasourceUid: beo6ke2svn08wb
+              model:
+                datasource:
+                    type: prometheus
+                    uid: beo6ke2svn08wb
+                editorMode: code
+                expr: |
+                    validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_SEPOLIA"} > 1
+                hide: false
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: B
             - refId: C
               datasourceUid: __expr__
               model:
@@ -104,6 +124,33 @@ groups:
                 intervalMs: 1000
                 maxDataPoints: 43200
                 refId: C
+                type: threshold
+            - refId: D
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                            - 0
+                        type: eq
+                      operator:
+                        type: and
+                      query:
+                        params: []
+                      reducer:
+                        params: []
+                        type: avg
+                      type: query
+                datasource:
+                    name: Expression
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                hide: false
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: D
                 type: threshold
           noDataState: Alerting
           execErrState: Alerting
@@ -273,7 +320,7 @@ groups:
           for: 30s
           annotations:
             summary: ⚠️ Attestation success rate dropped below 100% on MAINNET. Check logs or metrics.
-          isPaused: true
+          isPaused: false
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
@@ -288,20 +335,40 @@ groups:
               datasourceUid: beo6ke2svn08wb
               model:
                 editorMode: code
-                expr: (time() - validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_MAIN"}) / 60
+                expr: |
+                    (time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_MAIN"}, 1)) / 60
                 instant: true
                 intervalMs: 1000
                 legendFormat: __auto
                 maxDataPoints: 43200
                 range: false
                 refId: A
+            - refId: B
+              relativeTimeRange:
+                from: 60
+                to: 0
+              datasourceUid: beo6ke2svn08wb
+              model:
+                datasource:
+                    type: prometheus
+                    uid: beo6ke2svn08wb
+                editorMode: code
+                expr: |
+                    validator_attestation_last_attestation_timestamp_seconds{exported_network="SN_MAIN"} > 1
+                hide: false
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: B
             - refId: C
               datasourceUid: __expr__
               model:
                 conditions:
                     - evaluator:
                         params:
-                            - 100
+                            - 105
                         type: gte
                       operator:
                         type: and
@@ -320,13 +387,40 @@ groups:
                 maxDataPoints: 43200
                 refId: C
                 type: threshold
+            - refId: D
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                            - 0
+                        type: eq
+                      operator:
+                        type: and
+                      query:
+                        params: []
+                      reducer:
+                        params: []
+                        type: avg
+                      type: query
+                datasource:
+                    name: Expression
+                    type: __expr__
+                    uid: __expr__
+                expression: B
+                hide: false
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: D
+                type: threshold
           noDataState: Alerting
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 100 minutes ago on MAINNET.
+                Last attestation happened over 105 minutes ago on MAINNET.
                 Check if the attestation tool is running and synced.
-          isPaused: true
+          isPaused: false
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
@@ -377,7 +471,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: "\U0001F6A8 Attestation Failures Detected on MAINNET.\nValidator has submitted one or more failed attestations in the last minute."
-          isPaused: true
+          isPaused: false
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
