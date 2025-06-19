@@ -362,8 +362,7 @@
                 "result": {
                   "index": 0,
                   "text": "No attestation yet"
-                },
-                "to": null
+                }
               },
               "type": "range"
             }
@@ -1001,7 +1000,7 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1022,5 +1021,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 66
+  "version": 68
 }
