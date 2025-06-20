@@ -387,7 +387,7 @@
               }
             ]
           },
-          "unit": "m"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -424,7 +424,7 @@
           "refId": "A"
         }
       ],
-      "title": "Last Successful Attestation",
+      "title": "Last Successful Attest, min",
       "type": "stat"
     },
     {
@@ -1021,5 +1021,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 68
+  "version": 71
 }
