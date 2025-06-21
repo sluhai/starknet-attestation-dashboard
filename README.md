@@ -52,7 +52,8 @@ To use this dashboard:
 
 That's it.
 
-<img width="1470" alt="image" src="https://github.com/user-attachments/assets/23ef9019-7a93-4a15-ac6f-49c502cc097d" />
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/e8e94046-4bce-45e9-b14d-d4c818e0f28a" />
+
 
 
 
