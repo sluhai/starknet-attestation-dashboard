@@ -72,7 +72,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 4,
         "x": 0,
         "y": 1
       },
@@ -131,8 +131,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 3,
+        "w": 5,
+        "x": 4,
         "y": 1
       },
       "id": 9002,
@@ -190,8 +190,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 6,
+        "w": 5,
+        "x": 9,
         "y": 1
       },
       "id": 9003,
@@ -252,8 +252,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
-        "x": 9,
+        "w": 5,
+        "x": 14,
         "y": 1
       },
       "id": 2001,
@@ -281,151 +281,8 @@
           "refId": "A"
         }
       ],
-      "title": "Epoch Progress",
+      "title": "Current Epoch Progress",
       "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "beo6ke2svn08wb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "orange"
-              },
-              {
-                "color": "yellow",
-                "value": -15
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 1
-      },
-      "id": 2002,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.2",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"} - validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Blocks Until Attestation",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 0,
-          "mappings": [
-            {
-              "options": {
-                "from": 26280000,
-                "result": {
-                  "index": 0,
-                  "text": "No attestation yet"
-                }
-              },
-              "type": "range"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "yellow",
-                "value": 60
-              },
-              {
-                "color": "orange",
-                "value": 90
-              },
-              {
-                "color": "red",
-                "value": 120
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 16,
-        "y": 1
-      },
-      "id": 2003,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.2",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=~\"$exported_network\"}, 1)) / 60\n< 10000\n",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Attested (minutes ago)",
-      "type": "stat"
     },
     {
       "datasource": {
@@ -459,8 +316,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 4,
-        "x": 20,
+        "w": 5,
+        "x": 19,
         "y": 1
       },
       "id": 2004,
@@ -555,7 +412,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 24,
+        "w": 13,
         "x": 0,
         "y": 5
       },
@@ -599,6 +456,149 @@
       ],
       "title": "Attestation Performance Trends",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange"
+              },
+              {
+                "color": "yellow",
+                "value": -15
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 11,
+        "x": 13,
+        "y": 5
+      },
+      "id": 2002,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "validator_attestation_current_epoch_assigned_block_number{exported_network=~\"$exported_network\"} - validator_attestation_starknet_latest_block_number{exported_network=~\"$exported_network\"}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Blocks Until Attestation",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "mappings": [
+            {
+              "options": {
+                "from": 26280000,
+                "result": {
+                  "index": 0,
+                  "text": "No attestation yet"
+                }
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "yellow",
+                "value": 60
+              },
+              {
+                "color": "orange",
+                "value": 90
+              },
+              {
+                "color": "red",
+                "value": 120
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 11,
+        "x": 13,
+        "y": 9
+      },
+      "id": 2003,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "(time() - clamp_min(validator_attestation_last_attestation_timestamp_seconds{exported_network=~\"$exported_network\"}, 1)) / 60\n< 10000\n",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Last Successful Attesttation (minutes ago)",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1000,7 +1000,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -1021,5 +1021,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 73
+  "version": 75
 }
