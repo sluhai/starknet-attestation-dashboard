@@ -412,7 +412,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 13,
+        "w": 14,
         "x": 0,
         "y": 5
       },
@@ -487,8 +487,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 11,
-        "x": 13,
+        "w": 10,
+        "x": 14,
         "y": 5
       },
       "id": 2002,
@@ -566,8 +566,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 11,
-        "x": 13,
+        "w": 10,
+        "x": 14,
         "y": 9
       },
       "id": 2003,
@@ -1021,5 +1021,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 77
+  "version": 78
 }
