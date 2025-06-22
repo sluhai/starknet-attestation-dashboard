@@ -42,78 +42,6 @@
       },
       "fieldConfig": {
         "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "text": "Down"
-                },
-                "1": {
-                  "text": "Running"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red"
-              },
-              {
-                "color": "green",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 1
-      },
-      "id": 9010,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.2",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "up{job=\"starknet-attestation\",exported_network=~\"$exported_network\"}",
-          "legendFormat": "{{exported_network}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Service Status",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "beo6ke2svn08wb"
-      },
-      "fieldConfig": {
-        "defaults": {
           "color": {
             "mode": "thresholds"
           },
@@ -133,7 +61,7 @@
       "gridPos": {
         "h": 4,
         "w": 5,
-        "x": 4,
+        "x": 0,
         "y": 1
       },
       "id": 9003,
@@ -193,7 +121,7 @@
       "gridPos": {
         "h": 4,
         "w": 5,
-        "x": 9,
+        "x": 5,
         "y": 1
       },
       "id": 9002,
@@ -255,8 +183,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
-        "x": 14,
+        "w": 6,
+        "x": 10,
         "y": 1
       },
       "id": 2001,
@@ -295,6 +223,78 @@
       },
       "fieldConfig": {
         "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "Down"
+                },
+                "1": {
+                  "text": "Running"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 1
+      },
+      "id": 9010,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "up{job=\"starknet-attestation\",exported_network=~\"$exported_network\"}",
+          "legendFormat": "{{exported_network}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Service Status",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "beo6ke2svn08wb"
+      },
+      "fieldConfig": {
+        "defaults": {
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -324,8 +324,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 5,
-        "x": 19,
+        "w": 4,
+        "x": 20,
         "y": 1
       },
       "id": 2004,
@@ -421,7 +421,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 14,
+        "w": 16,
         "x": 0,
         "y": 5
       },
@@ -458,7 +458,7 @@
         {
           "editorMode": "code",
           "expr": "validator_attestation_attestation_failure_count{exported_network=~\"$exported_network\"}",
-          "legendFormat": "{{exported_network}} Failures",
+          "legendFormat": "{{exported_network}} Failed",
           "range": true,
           "refId": "C"
         }
@@ -496,8 +496,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 10,
-        "x": 14,
+        "w": 8,
+        "x": 16,
         "y": 5
       },
       "id": 2002,
@@ -576,8 +576,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 10,
-        "x": 14,
+        "w": 8,
+        "x": 16,
         "y": 9
       },
       "id": 2003,
@@ -990,10 +990,12 @@
         "allValue": ".*",
         "current": {
           "text": [
-            "SN_MAIN"
+            "SN_MAIN",
+            "SN_SEPOLIA"
           ],
           "value": [
-            "SN_MAIN"
+            "SN_MAIN",
+            "SN_SEPOLIA"
           ]
         },
         "datasource": {
@@ -1038,5 +1040,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 84
+  "version": 85
 }
