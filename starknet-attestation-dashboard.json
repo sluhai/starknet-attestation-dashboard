@@ -444,21 +444,21 @@
         {
           "editorMode": "code",
           "expr": "validator_attestation_attestation_submitted_count{exported_network=~\"$exported_network\"}",
-          "legendFormat": "Submitted",
+          "legendFormat": "{{exported_network}} Submitted",
           "range": true,
           "refId": "A"
         },
         {
           "editorMode": "code",
           "expr": "validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}",
-          "legendFormat": "Confirmed",
+          "legendFormat": "{{exported_network}} Confirmed",
           "range": true,
           "refId": "B"
         },
         {
           "editorMode": "code",
           "expr": "validator_attestation_attestation_failure_count{exported_network=~\"$exported_network\"}",
-          "legendFormat": "Failures",
+          "legendFormat": "{{exported_network}} Failures",
           "range": true,
           "refId": "C"
         }
@@ -990,12 +990,10 @@
         "allValue": ".*",
         "current": {
           "text": [
-            "SN_MAIN",
-            "SN_SEPOLIA"
+            "SN_MAIN"
           ],
           "value": [
-            "SN_MAIN",
-            "SN_SEPOLIA"
+            "SN_MAIN"
           ]
         },
         "datasource": {
@@ -1040,5 +1038,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 82
+  "version": 84
 }
