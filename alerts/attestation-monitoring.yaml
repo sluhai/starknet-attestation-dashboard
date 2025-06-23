@@ -365,8 +365,8 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 105
-                        type: gte
+                            - 100
+                        type: gt
                       operator:
                         type: and
                       query:
@@ -414,7 +414,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 105 minutes ago on MAINNET.
+                Last attestation happened over 100 minutes ago on MAINNET.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
