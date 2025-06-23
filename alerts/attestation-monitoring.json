@@ -142,9 +142,9 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                35
+                                                33
                                             ],
-                                            "type": "gte"
+                                            "type": "gt"
                                         },
                                         "operator": {
                                             "type": "and"
@@ -218,7 +218,7 @@
                     "noDataState": "Alerting",
                     "execErrState": "Alerting",
                     "annotations": {
-                        "summary": "Last attestation happened over 35 minutes ago on Sepolia.\nCheck if the attestation tool is running and synced."
+                        "summary": "Last attestation happened over 33 minutes ago on Sepolia.\nCheck if the attestation tool is running and synced."
                     },
                     "isPaused": false,
                     "notification_settings": {
@@ -261,7 +261,7 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                0.5
+                                                0.01
                                             ],
                                             "type": "gte"
                                         },
@@ -515,7 +515,7 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                100
+                                                99
                                             ],
                                             "type": "gt"
                                         },
@@ -591,7 +591,7 @@
                     "noDataState": "Alerting",
                     "execErrState": "Alerting",
                     "annotations": {
-                        "summary": "Last attestation happened over 100 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
+                        "summary": "Last attestation happened over 99 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
                     },
                     "isPaused": false,
                     "notification_settings": {
@@ -634,7 +634,7 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                0.5
+                                                0.01
                                             ],
                                             "type": "gte"
                                         },
