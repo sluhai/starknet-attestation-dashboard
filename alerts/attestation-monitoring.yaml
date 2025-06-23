@@ -105,8 +105,8 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 35
-                        type: gte
+                            - 33
+                        type: gt
                       operator:
                         type: and
                       query:
@@ -154,7 +154,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 35 minutes ago on Sepolia.
+                Last attestation happened over 33 minutes ago on Sepolia.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
@@ -184,7 +184,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 0.5
+                            - 0.01
                         type: gte
                       operator:
                         type: and
@@ -365,7 +365,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 100
+                            - 99
                         type: gt
                       operator:
                         type: and
@@ -414,7 +414,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 100 minutes ago on MAINNET.
+                Last attestation happened over 99 minutes ago on MAINNET.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
@@ -444,7 +444,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 0.5
+                            - 0.01
                         type: gte
                       operator:
                         type: and
