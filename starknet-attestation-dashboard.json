@@ -1036,5 +1036,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 87
+  "version": 88
 }
