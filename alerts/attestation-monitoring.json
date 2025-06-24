@@ -142,9 +142,9 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                33
+                                                33.33333333
                                             ],
-                                            "type": "gt"
+                                            "type": "gte"
                                         },
                                         "operator": {
                                             "type": "and"
@@ -218,7 +218,7 @@
                     "noDataState": "Alerting",
                     "execErrState": "Alerting",
                     "annotations": {
-                        "summary": "Last attestation happened over 33 minutes ago on Sepolia.\nCheck if the attestation tool is running and synced."
+                        "summary": "Last attestation happened over 33 minutes and 20 seconds ago on Sepolia.\nCheck if the attestation tool is running and synced."
                     },
                     "isPaused": false,
                     "notification_settings": {
@@ -515,9 +515,9 @@
                                     {
                                         "evaluator": {
                                             "params": [
-                                                99
+                                                100
                                             ],
-                                            "type": "gt"
+                                            "type": "gte"
                                         },
                                         "operator": {
                                             "type": "and"
@@ -591,7 +591,7 @@
                     "noDataState": "Alerting",
                     "execErrState": "Alerting",
                     "annotations": {
-                        "summary": "Last attestation happened over 99 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
+                        "summary": "Last attestation happened over 1 hour and 40 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
                     },
                     "isPaused": false,
                     "notification_settings": {
