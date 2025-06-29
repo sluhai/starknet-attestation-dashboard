@@ -5,7 +5,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
   interval_seconds = 30
 
   rule {
-    name      = "[Sepolia] Attestation Success Rate Below 100%"
+    name      = "[Sepolia] Attestation Success Rate Below 99.5%"
     condition = "C"
 
     data {
@@ -35,7 +35,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     exec_err_state = "Alerting"
     for            = "30s"
     annotations = {
-      summary = "⚠️ Attestation success rate dropped below 100% on Sepolia. Check logs or metrics."
+      summary = "⚠️ Attestation success rate dropped below 99.5% on Sepolia. Check logs or metrics."
     }
     is_paused = false
 
@@ -192,7 +192,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     missing_series_evals_to_resolve = 1
   }
   rule {
-    name      = "[Mainnet] Attestation Success Rate Below 100%"
+    name      = "[Mainnet] Attestation Success Rate Below 99.5%"
     condition = "C"
 
     data {
@@ -222,7 +222,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     exec_err_state = "Alerting"
     for            = "30s"
     annotations = {
-      summary = "⚠️ Attestation success rate dropped below 100% on MAINNET. Check logs or metrics."
+      summary = "⚠️ Attestation success rate dropped below 99.5% on MAINNET. Check logs or metrics."
     }
     is_paused = false
 
