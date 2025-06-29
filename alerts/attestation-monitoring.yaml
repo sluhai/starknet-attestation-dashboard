@@ -34,7 +34,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 99.9
+                            - 99.5
                         type: lte
                       operator:
                         type: and
@@ -294,7 +294,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 99.9
+                            - 99.5
                         type: lte
                       operator:
                         type: and
