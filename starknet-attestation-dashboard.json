@@ -306,11 +306,11 @@
               },
               {
                 "color": "orange",
-                "value": 99
+                "value": 99.33333333
               },
               {
-                "color": "#EAB839",
-                "value": 99.5
+                "color": "yellow",
+                "value": 99.66666667
               },
               {
                 "color": "green",
@@ -925,8 +925,16 @@
                 "color": "green"
               },
               {
-                "color": "red",
+                "color": "yellow",
                 "value": 1
+              },
+              {
+                "color": "orange",
+                "value": 2
+              },
+              {
+                "color": "red",
+                "value": 3
               }
             ]
           },
@@ -1015,7 +1023,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {
@@ -1036,5 +1044,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 88
+  "version": 92
 }
