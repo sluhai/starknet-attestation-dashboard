@@ -6,7 +6,7 @@ groups:
       interval: 30s
       rules:
         - uid: aeoxwk6f4terkb
-          title: '[Sepolia] Attestation Success Rate Below 100%'
+          title: '[Sepolia] Attestation Success Rate Below 99.5%'
           condition: C
           data:
             - refId: A
@@ -57,7 +57,7 @@ groups:
           execErrState: Alerting
           for: 30s
           annotations:
-            summary: ⚠️ Attestation success rate dropped below 100% on Sepolia. Check logs or metrics.
+            summary: ⚠️ Attestation success rate dropped below 99.5% on Sepolia. Check logs or metrics.
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
@@ -266,7 +266,7 @@ groups:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
         - uid: aep64tltcifpcd
-          title: '[Mainnet] Attestation Success Rate Below 100%'
+          title: '[Mainnet] Attestation Success Rate Below 99.5%'
           condition: C
           data:
             - refId: A
@@ -317,7 +317,7 @@ groups:
           execErrState: Alerting
           for: 30s
           annotations:
-            summary: ⚠️ Attestation success rate dropped below 100% on MAINNET. Check logs or metrics.
+            summary: ⚠️ Attestation success rate dropped below 99.5% on MAINNET. Check logs or metrics.
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
