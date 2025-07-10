@@ -569,7 +569,7 @@
               },
               {
                 "color": "orange",
-                "value": -79
+                "value": -175
               },
               {
                 "color": "yellow",
@@ -1076,7 +1076,7 @@
     }
   ],
   "preload": false,
-  "refresh": "30s",
+  "refresh": "15s",
   "schemaVersion": 41,
   "tags": [
     "starknet",
@@ -1139,5 +1139,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 98
+  "version": 103
 }
