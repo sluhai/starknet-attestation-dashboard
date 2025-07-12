@@ -699,7 +699,7 @@
           "refId": "A"
         }
       ],
-      "title": "Minutes Since Last Successful Attestation",
+      "title": "Minutes Since Last Attestation",
       "type": "stat"
     },
     {
@@ -1139,5 +1139,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 103
+  "version": 104
 }
