@@ -571,12 +571,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
-                "value": 0
-              },
-              {
                 "color": "orange",
-                "value": -470
+                "value": 0
               },
               {
                 "color": "yellow",
@@ -1147,5 +1143,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 116
+  "version": 117
 }
