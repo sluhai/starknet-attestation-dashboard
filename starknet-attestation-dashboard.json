@@ -661,11 +661,11 @@
               },
               {
                 "color": "orange",
-                "value": 89
+                "value": 79
               },
               {
                 "color": "red",
-                "value": 119
+                "value": 99
               }
             ]
           },
@@ -1090,7 +1090,7 @@
     }
   ],
   "preload": false,
-  "refresh": "5s",
+  "refresh": "10s",
   "schemaVersion": 41,
   "tags": [
     "starknet",
@@ -1102,14 +1102,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": [
-            "SN_MAIN",
-            "SN_SEPOLIA"
-          ],
-          "value": [
-            "SN_MAIN",
-            "SN_SEPOLIA"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -1153,5 +1147,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 111
+  "version": 116
 }
