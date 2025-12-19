@@ -55,7 +55,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -576,7 +576,7 @@
               },
               {
                 "color": "yellow",
-                "value": -39
+                "value": -59
               },
               {
                 "color": "green",
@@ -584,7 +584,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -1099,7 +1099,9 @@
         "allValue": ".*",
         "current": {
           "text": "All",
-          "value": "$__all"
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -1143,5 +1145,5 @@
   "timezone": "browser",
   "title": "Validator Attestation Monitoring",
   "uid": "starknet-attestation",
-  "version": 117
+  "version": 122
 }
