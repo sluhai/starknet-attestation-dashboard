@@ -17,7 +17,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"editorMode\":\"code\",\"expr\":\"100 * (\\n  increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_SEPOLIA\\\"}[24h])\\n  /\\n  increase(validator_attestation_attestation_submitted_count{exported_network=\\\"SN_SEPOLIA\\\"}[24h])\\n)\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"100 * (\\n  increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_SEPOLIA\\\"}[24h])\\n  /\\n  (\\n    increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_SEPOLIA\\\"}[24h])\\n    +\\n    increase(validator_attestation_missed_epochs_count{exported_network=\\\"SN_SEPOLIA\\\"}[24h])\\n  )\\n)\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
     }
     data {
       ref_id = "C"
@@ -35,7 +35,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     exec_err_state = "Alerting"
     for            = "30s"
     annotations = {
-      summary = "⚠️ Attestation success rate dropped below 99.5% over the last 24h on SEPOLIA (two or more failed attestations). Check logs or metrics."
+      summary = "Attestation success rate dropped below 99.5% over the last 24h on SEPOLIA (two or more missed epochs). Check logs or metrics."
     }
     is_paused = false
 
@@ -79,7 +79,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[15],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[12.8],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
     }
     data {
       ref_id = "D"
@@ -107,7 +107,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     no_data_state  = "Alerting"
     exec_err_state = "Alerting"
     annotations = {
-      summary = "Last attestation happened over 15 minutes ago on Sepolia.\nCheck if the attestation tool is running and synced."
+      summary = "Last attestation happened over 12 minutes and 48 seconds ago on Sepolia.\nCheck if the attestation tool is running and synced."
     }
     is_paused = false
 
@@ -208,7 +208,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "beo6ke2svn08wb"
-      model          = "{\"editorMode\":\"code\",\"expr\":\"100 * (\\n  increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_MAIN\\\"}[24h])\\n  /\\n  increase(validator_attestation_attestation_submitted_count{exported_network=\\\"SN_MAIN\\\"}[24h])\\n)\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"100 * (\\n  increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_MAIN\\\"}[24h])\\n  /\\n  (\\n    increase(validator_attestation_attestation_confirmed_count{exported_network=\\\"SN_MAIN\\\"}[24h])\\n    +\\n    increase(validator_attestation_missed_epochs_count{exported_network=\\\"SN_MAIN\\\"}[24h])\\n  )\\n)\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
     }
     data {
       ref_id = "C"
@@ -226,7 +226,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     exec_err_state = "Alerting"
     for            = "30s"
     annotations = {
-      summary = "⚠️ Attestation success rate dropped below 99.5% over the last 24h on MAINNET (at least one failed attestation). Check logs or metrics."
+      summary = "Attestation success rate dropped below 99.5% over the last 24h on MAINNET (at least one missed epoch). Check logs or metrics."
     }
     is_paused = false
 
@@ -270,7 +270,7 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[110],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[119],\"type\":\"gte\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
     }
     data {
       ref_id = "D"
@@ -292,13 +292,13 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
       }
 
       datasource_uid = "__expr__"
-      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[0,0],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"$C && $D\",\"hide\":false,\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"E\",\"type\":\"math\"}"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[0,0],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"datasource\":{\"name\":\"Expression\",\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"$C && $D\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"E\",\"type\":\"math\"}"
     }
 
     no_data_state  = "Alerting"
     exec_err_state = "Alerting"
     annotations = {
-      summary = "Last attestation happened over 1 hour and 50 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
+      summary = "Last attestation happened over 1 hour and 59 minutes ago on MAINNET.\nCheck if the attestation tool is running and synced."
     }
     is_paused = false
 
@@ -818,6 +818,123 @@ resource "grafana_rule_group" "rule_group_4f7ad2fea5e182e5" {
     for            = "1m"
     annotations = {
       summary = "Prometheus is permanently failing to write samples to Grafana Cloud. These samples are lost, not retried. Likely causes: an invalid or revoked token, or data rejected by the endpoint. Local Prometheus and all local alerts are unaffected."
+    }
+    is_paused = false
+
+    notification_settings {
+      contact_point = "grafana-default-email"
+    }
+  }
+  rule {
+    name      = "[Sepolia] Node Stalled"
+    condition = "C"
+
+    data {
+      ref_id = "A"
+
+      relative_time_range {
+        from = 600
+        to   = 0
+      }
+
+      datasource_uid = "beo6ke2svn08wb"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"current_block{network=\\\"testnet-sepolia\\\"} - current_block{network=\\\"testnet-sepolia\\\"} offset 3m   \",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+    }
+    data {
+      ref_id     = "C"
+      query_type = "expression"
+
+      relative_time_range {
+        from = 0
+        to   = 0
+      }
+
+      datasource_uid = "__expr__"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1],\"type\":\"lt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+    }
+
+    no_data_state  = "Alerting"
+    exec_err_state = "Alerting"
+    annotations = {
+      summary = "Pathfinder on SEPOLIA has not advanced its head for 3 minutes. The node is stalled. Both block gauges freeze together in this state, so the Node Lagging rule stays green and cannot see it."
+    }
+    is_paused = false
+
+    notification_settings {
+      contact_point = "grafana-default-email"
+    }
+  }
+  rule {
+    name      = "[Mainnet] Node Stalled"
+    condition = "C"
+
+    data {
+      ref_id = "A"
+
+      relative_time_range {
+        from = 600
+        to   = 0
+      }
+
+      datasource_uid = "beo6ke2svn08wb"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"current_block{network=\\\"mainnet\\\"} - current_block{network=\\\"mainnet\\\"} offset 3m\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+    }
+    data {
+      ref_id     = "C"
+      query_type = "expression"
+
+      relative_time_range {
+        from = 0
+        to   = 0
+      }
+
+      datasource_uid = "__expr__"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[1],\"type\":\"lt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+    }
+
+    no_data_state  = "Alerting"
+    exec_err_state = "Alerting"
+    annotations = {
+      summary = "Pathfinder on MAINNET has not advanced its head for 3 minutes. The node is stalled. Both block gauges freeze together in this state, so the Node Lagging rule stays green and cannot see it. A stall of this length can cost a mainnet epoch."
+    }
+    is_paused = false
+
+    notification_settings {
+      contact_point = "grafana-default-email"
+    }
+  }
+  rule {
+    name      = "Gateway Submission Hung"
+    condition = "C"
+
+    data {
+      ref_id = "A"
+
+      relative_time_range {
+        from = 600
+        to   = 0
+      }
+
+      datasource_uid = "beo6ke2svn08wb"
+      model          = "{\"editorMode\":\"code\",\"expr\":\"(\\n  sum by (network) (gateway_requests_total{method=\\\"add_transaction\\\"})\\n  -\\n  sum by (network) (gateway_request_duration_seconds_count{method=\\\"add_transaction\\\"})\\n)\\n-\\n(\\n  sum by (network) (gateway_requests_total{method=\\\"add_transaction\\\"} offset 10m)\\n  -\\n  sum by (network) (gateway_request_duration_seconds_count{method=\\\"add_transaction\\\"} offset 10m)\\n)\",\"instant\":true,\"intervalMs\":1000,\"legendFormat\":\"__auto\",\"maxDataPoints\":43200,\"range\":false,\"refId\":\"A\"}"
+    }
+    data {
+      ref_id     = "C"
+      query_type = "expression"
+
+      relative_time_range {
+        from = 0
+        to   = 0
+      }
+
+      datasource_uid = "__expr__"
+      model          = "{\"conditions\":[{\"evaluator\":{\"params\":[0],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"C\"]},\"reducer\":{\"params\":[],\"type\":\"last\"},\"type\":\"query\"}],\"datasource\":{\"type\":\"__expr__\",\"uid\":\"__expr__\"},\"expression\":\"A\",\"intervalMs\":1000,\"maxDataPoints\":43200,\"refId\":\"C\",\"type\":\"threshold\"}"
+    }
+
+    no_data_state  = "OK"
+    exec_err_state = "Alerting"
+    annotations = {
+      summary = "A transaction submission to the Starknet gateway was issued but never completed. This is a known upstream defect: the submission has no timeout and can hang indefinitely (equilibriumco/pathfinder#3545). Two such hangs inside one attestation window cost an epoch on Sepolia."
     }
     is_paused = false
 
