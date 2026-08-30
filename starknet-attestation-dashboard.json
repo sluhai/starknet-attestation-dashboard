@@ -27,7 +27,7 @@
       }
     ],
     "cursorSync": "Off",
-    "description": "# Starknet Validator Attestation Dashboard\n\nThis is a Grafana dashboard for monitoring Starknet validator attestations.\n\nIt visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.\n\n**Metrics displayed**\n\n- Starknet latest block number\n- Epoch progress (%)\n- Blocks remaining until attestation\n- Time since last successful attestation\n- Success rate (%)\n- Number of submitted, confirmed, and failed attestations (time series)\n- Epoch Start Block\n- Current Epoch ID\n- Epoch Length\n- Assigned Block\n\n## Setup\n\nTo use this dashboard:\n1. Make sure your validator attestation tool is running and exposing metrics on a port, for example:\n```\n--metrics-address 127.0.0.1:9095\n```\n2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:\n```\n- job_name: \"starknet-attestation\"\n    static_configs:\n      - targets: ['localhost:9095']\n      - targets: ['localhost:9096']\n    relabel_configs:\n      - source_labels: [__address__]\n        regex: localhost:9095\n        target_label: exported_network\n        replacement: SN_MAIN\n      - source_labels: [__address__]\n        regex: localhost:9096\n        target_label: exported_network\n        replacement: SN_SEPOLIA\n```\n3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.\n4. Add Prometheus as a data source in Grafana.\n5. Import the starknet-attestation-dashboard.json file in your Grafana UI.\n\nThat's it.",
+    "description": "# Starknet Validator Attestation Dashboard\n\nThis is a Grafana dashboard for monitoring Starknet validator attestations.\n\nIt visualizes the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool.\n\n**Metrics displayed**\n\n- Starknet latest block number\n- Epoch progress (%)\n- Blocks remaining until attestation\n- Time since last successful attestation\n- Success rate (%)\n- Number of submitted, confirmed, and failed attestations (time series)\n- Epoch Start Block\n- Current Epoch ID\n- Epoch Length\n- Assigned Block\n- Operational account balance (STRK)\n\n## Setup\n\nTo use this dashboard:\n1. Make sure your validator attestation tool is running and exposing metrics on a port, for example:\n```\n--metrics-address 127.0.0.1:9095\n```\n2. Add a job to your prometheus.yml file so that Prometheus scrapes metrics from the corresponding port(s) of your attestation tool instance(s), for example:\n```\n- job_name: \"starknet-attestation\"\n    static_configs:\n      - targets: ['localhost:9095']\n      - targets: ['localhost:9096']\n    relabel_configs:\n      - source_labels: [__address__]\n        regex: localhost:9095\n        target_label: exported_network\n        replacement: SN_MAIN\n      - source_labels: [__address__]\n        regex: localhost:9096\n        target_label: exported_network\n        replacement: SN_SEPOLIA\n```\n3. After updating the configuration, restart Prometheus. It will begin collecting and storing metrics for visualization and analysis.\n4. Add Prometheus as a data source in Grafana.\n5. Import the starknet-attestation-dashboard.json file in your Grafana UI.\n\nThat's it.",
     "editable": true,
     "elements": {
       "panel-1": {
@@ -42,7 +42,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -71,7 +73,15 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "none"
                 },
                 "overrides": []
@@ -82,7 +92,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -104,7 +120,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -137,7 +155,16 @@
                   "min": 0,
                   "thresholds": {
                     "mode": "absolute",
-                    "steps": [ { "color": "blue", "value": 0 }, { "color": "green", "value": 90 } ]
+                    "steps": [
+                      {
+                        "color": "blue",
+                        "value": 0
+                      },
+                      {
+                        "color": "green",
+                        "value": 90
+                      }
+                    ]
                   },
                   "unit": "percent"
                 },
@@ -146,12 +173,22 @@
               "options": {
                 "barShape": "flat",
                 "barWidthFactor": 0.5,
-                "effects": { "barGlow": false, "centerGlow": false, "gradient": false },
+                "effects": {
+                  "barGlow": false,
+                  "centerGlow": false,
+                  "gradient": false
+                },
                 "endpointMarker": "point",
                 "minVizHeight": 75,
                 "minVizWidth": 75,
                 "orientation": "auto",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "segmentCount": 1,
                 "segmentSpacing": 0.3,
                 "shape": "gauge",
@@ -178,7 +215,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -210,9 +249,18 @@
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
-                      { "color": "orange", "value": 0 },
-                      { "color": "yellow", "value": -59 },
-                      { "color": "green", "value": 1 }
+                      {
+                        "color": "orange",
+                        "value": 0
+                      },
+                      {
+                        "color": "yellow",
+                        "value": -59
+                      },
+                      {
+                        "color": "green",
+                        "value": 1
+                      }
                     ]
                   },
                   "unit": "none"
@@ -225,7 +273,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -247,7 +301,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -280,10 +336,22 @@
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
-                      { "color": "green", "value": 0 },
-                      { "color": "yellow", "value": 59 },
-                      { "color": "orange", "value": 79 },
-                      { "color": "red", "value": 99 }
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 59
+                      },
+                      {
+                        "color": "orange",
+                        "value": 79
+                      },
+                      {
+                        "color": "red",
+                        "value": 99
+                      }
                     ]
                   },
                   "unit": "none"
@@ -296,7 +364,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -318,7 +392,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -352,10 +428,22 @@
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
-                      { "color": "red", "value": 0 },
-                      { "color": "orange", "value": 99 },
-                      { "color": "yellow", "value": 99.5 },
-                      { "color": "green", "value": 100 }
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "orange",
+                        "value": 99
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 99.5
+                      },
+                      {
+                        "color": "green",
+                        "value": 100
+                      }
                     ]
                   },
                   "unit": "percent"
@@ -368,7 +456,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -390,7 +484,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -409,7 +505,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -438,7 +536,9 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "palette-classic" },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -450,36 +550,86 @@
                     "drawStyle": "line",
                     "fillOpacity": 8,
                     "gradientMode": "none",
-                    "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
                     "insertNulls": false,
                     "lineInterpolation": "linear",
                     "lineWidth": 2,
                     "pointSize": 5,
-                    "scaleDistribution": { "type": "linear" },
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
                     "showPoints": "never",
                     "showValues": false,
                     "spanNulls": false,
-                    "stacking": { "group": "A", "mode": "none" },
-                    "thresholdsStyle": { "mode": "off" }
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
                   },
                   "decimals": 0,
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "short"
                 },
                 "overrides": [
                   {
-                    "matcher": { "id": "byName", "options": "Submitted" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "yellow", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Submitted"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "yellow",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "matcher": { "id": "byName", "options": "Confirmed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "green", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Confirmed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   }
                 ]
               },
               "options": {
-                "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true },
-                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "none" }
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
               }
             },
             "version": "13.2.0"
@@ -498,7 +648,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -517,7 +669,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -546,7 +700,9 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "palette-classic" },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -558,36 +714,86 @@
                     "drawStyle": "line",
                     "fillOpacity": 8,
                     "gradientMode": "none",
-                    "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
                     "insertNulls": false,
                     "lineInterpolation": "linear",
                     "lineWidth": 2,
                     "pointSize": 5,
-                    "scaleDistribution": { "type": "linear" },
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
                     "showPoints": "never",
                     "showValues": false,
                     "spanNulls": false,
-                    "stacking": { "group": "A", "mode": "none" },
-                    "thresholdsStyle": { "mode": "off" }
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
                   },
                   "decimals": 0,
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "short"
                 },
                 "overrides": [
                   {
-                    "matcher": { "id": "byName", "options": "Submitted" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "dark-yellow", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Submitted"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-yellow",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "matcher": { "id": "byName", "options": "Confirmed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "dark-green", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "Confirmed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-green",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   }
                 ]
               },
               "options": {
-                "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true },
-                "tooltip": { "hideZeros": false, "mode": "multi", "sort": "none" }
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "multi",
+                  "sort": "none"
+                }
               }
             },
             "version": "13.2.0"
@@ -606,7 +812,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -625,7 +833,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -654,7 +864,9 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "palette-classic" },
+                  "color": {
+                    "mode": "palette-classic"
+                  },
                   "custom": {
                     "axisBorderShow": false,
                     "axisCenteredZero": false,
@@ -666,45 +878,117 @@
                     "drawStyle": "points",
                     "fillOpacity": 0,
                     "gradientMode": "none",
-                    "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                    "hideFrom": {
+                      "legend": false,
+                      "tooltip": false,
+                      "viz": false
+                    },
                     "insertNulls": false,
                     "lineInterpolation": "linear",
                     "lineWidth": 1,
                     "pointSize": 10,
-                    "scaleDistribution": { "type": "linear" },
+                    "scaleDistribution": {
+                      "type": "linear"
+                    },
                     "showPoints": "always",
                     "showValues": false,
                     "spanNulls": false,
-                    "stacking": { "group": "A", "mode": "none" },
-                    "thresholdsStyle": { "mode": "off" }
+                    "stacking": {
+                      "group": "A",
+                      "mode": "none"
+                    },
+                    "thresholdsStyle": {
+                      "mode": "off"
+                    }
                   },
                   "decimals": 0,
                   "min": 0,
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "short"
                 },
                 "overrides": [
                   {
-                    "matcher": { "id": "byName", "options": "SN_MAIN Failed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "red", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SN_MAIN Failed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "matcher": { "id": "byName", "options": "SN_SEPOLIA Failed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "dark-red", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SN_SEPOLIA Failed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "dark-red",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "matcher": { "id": "byName", "options": "SN_MAIN Missed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "yellow", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SN_MAIN Missed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "yellow",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   },
                   {
-                    "matcher": { "id": "byName", "options": "SN_SEPOLIA Missed" },
-                    "properties": [ { "id": "color", "value": { "fixedColor": "orange", "mode": "fixed" } } ]
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SN_SEPOLIA Missed"
+                    },
+                    "properties": [
+                      {
+                        "id": "color",
+                        "value": {
+                          "fixedColor": "orange",
+                          "mode": "fixed"
+                        }
+                      }
+                    ]
                   }
                 ]
               },
               "options": {
-                "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true },
-                "tooltip": { "hideZeros": false, "mode": "single", "sort": "none" }
+                "legend": {
+                  "calcs": [],
+                  "displayMode": "list",
+                  "placement": "bottom",
+                  "showLegend": true
+                },
+                "tooltip": {
+                  "hideZeros": false,
+                  "mode": "single",
+                  "sort": "none"
+                }
               }
             },
             "version": "13.2.0"
@@ -723,7 +1007,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -752,8 +1038,18 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "none"
                 },
                 "overrides": []
@@ -764,7 +1060,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -786,7 +1088,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -815,8 +1119,18 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "none"
                 },
                 "overrides": []
@@ -827,7 +1141,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -849,7 +1169,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -878,8 +1200,18 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "none"
                 },
                 "overrides": []
@@ -890,7 +1222,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -912,7 +1250,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -941,8 +1281,18 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "none"
                 },
                 "overrides": []
@@ -953,7 +1303,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -975,7 +1331,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -1004,9 +1362,19 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
+                  "color": {
+                    "mode": "thresholds"
+                  },
                   "decimals": 0,
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "short"
                 },
                 "overrides": []
@@ -1017,7 +1385,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -1039,7 +1413,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -1068,9 +1444,19 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
+                  "color": {
+                    "mode": "thresholds"
+                  },
                   "decimals": 0,
-                  "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": 0 } ] },
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
                   "unit": "short"
                 },
                 "overrides": []
@@ -1081,7 +1467,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -1103,7 +1495,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -1132,15 +1526,29 @@
             "spec": {
               "fieldConfig": {
                 "defaults": {
-                  "color": { "mode": "thresholds" },
+                  "color": {
+                    "mode": "thresholds"
+                  },
                   "decimals": 0,
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
-                      { "color": "green", "value": 0 },
-                      { "color": "yellow", "value": 1 },
-                      { "color": "orange", "value": 2 },
-                      { "color": "red", "value": 3 }
+                      {
+                        "color": "green",
+                        "value": 0
+                      },
+                      {
+                        "color": "yellow",
+                        "value": 1
+                      },
+                      {
+                        "color": "orange",
+                        "value": 2
+                      },
+                      {
+                        "color": "red",
+                        "value": 3
+                      }
                     ]
                   },
                   "unit": "short"
@@ -1153,7 +1561,13 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -1175,7 +1589,9 @@
                   "spec": {
                     "hidden": false,
                     "query": {
-                      "datasource": { "name": "beo6ke2svn08wb" },
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
@@ -1206,13 +1622,29 @@
                 "defaults": {
                   "mappings": [
                     {
-                      "options": { "0": { "text": "Down" }, "1": { "text": "Running" } },
+                      "options": {
+                        "0": {
+                          "text": "Down"
+                        },
+                        "1": {
+                          "text": "Running"
+                        }
+                      },
                       "type": "value"
                     }
                   ],
                   "thresholds": {
                     "mode": "absolute",
-                    "steps": [ { "color": "red", "value": 0 }, { "color": "green", "value": 1 } ]
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "green",
+                        "value": 1
+                      }
+                    ]
                   }
                 },
                 "overrides": []
@@ -1223,7 +1655,124 @@
                 "justifyMode": "auto",
                 "orientation": "auto",
                 "percentChangeColorMode": "standard",
-                "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false },
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0"
+          }
+        }
+      },
+      "panel-9011": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "validator_attestation_operational_account_balance_strk{exported_network=~\"$exported_network\"}",
+                        "legendFormat": "{{exported_network}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "",
+          "id": 9011,
+          "links": [],
+          "title": "Operational Balance (STRK)",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": 0
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": [
+                  {
+                    "matcher": {
+                      "id": "byName",
+                      "options": "SN_MAIN"
+                    },
+                    "properties": [
+                      {
+                        "id": "thresholds",
+                        "value": {
+                          "mode": "absolute",
+                          "steps": [
+                            {
+                              "color": "red",
+                              "value": 0
+                            },
+                            {
+                              "color": "yellow",
+                              "value": 500
+                            },
+                            {
+                              "color": "green",
+                              "value": 1000
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
                 "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
@@ -1249,113 +1798,222 @@
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9003" },
-                        "height": 4, "width": 5, "x": 0, "y": 0
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9003"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 0,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9002" },
-                        "height": 4, "width": 5, "x": 5, "y": 0
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9002"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 4,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2001" },
-                        "height": 4, "width": 6, "x": 10, "y": 0
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2001"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 8,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9010" },
-                        "height": 4, "width": 4, "x": 16, "y": 0
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9011"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 12,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2004" },
-                        "height": 4, "width": 4, "x": 20, "y": 0
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9010"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 16,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2005" },
-                        "height": 8, "width": 5, "x": 0, "y": 4
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2004"
+                        },
+                        "height": 4,
+                        "width": 4,
+                        "x": 20,
+                        "y": 0
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2006" },
-                        "height": 8, "width": 5, "x": 5, "y": 4
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2005"
+                        },
+                        "height": 8,
+                        "width": 5,
+                        "x": 0,
+                        "y": 4
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2007" },
-                        "height": 8, "width": 6, "x": 10, "y": 4
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2006"
+                        },
+                        "height": 8,
+                        "width": 5,
+                        "x": 5,
+                        "y": 4
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2002" },
-                        "height": 4, "width": 8, "x": 16, "y": 4
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2007"
+                        },
+                        "height": 8,
+                        "width": 6,
+                        "x": 10,
+                        "y": 4
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-2003" },
-                        "height": 4, "width": 8, "x": 16, "y": 8
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2002"
+                        },
+                        "height": 4,
+                        "width": 8,
+                        "x": 16,
+                        "y": 4
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9001" },
-                        "height": 3, "width": 4, "x": 0, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-2003"
+                        },
+                        "height": 4,
+                        "width": 8,
+                        "x": 16,
+                        "y": 8
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9004" },
-                        "height": 3, "width": 4, "x": 4, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9001"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 0,
+                        "y": 12
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-1" },
-                        "height": 3, "width": 4, "x": 8, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9004"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 4,
+                        "y": 12
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9008" },
-                        "height": 3, "width": 4, "x": 12, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-1"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 8,
+                        "y": 12
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9006" },
-                        "height": 3, "width": 4, "x": 16, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9008"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 12,
+                        "y": 12
                       }
                     },
                     {
                       "kind": "GridLayoutItem",
                       "spec": {
-                        "element": { "kind": "ElementReference", "name": "panel-9007" },
-                        "height": 3, "width": 4, "x": 20, "y": 12
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9006"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 16,
+                        "y": 12
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-9007"
+                        },
+                        "height": 3,
+                        "width": 4,
+                        "x": 20,
+                        "y": 12
                       }
                     }
                   ]
@@ -1376,7 +2034,7 @@
       "attestation"
     ],
     "timeSettings": {
-      "autoRefresh": "10s",
+      "autoRefresh": "1m",
       "autoRefreshIntervals": [
         "5s",
         "10s",
