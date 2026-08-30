@@ -20,7 +20,11 @@ groups:
                     100 * (
                       increase(validator_attestation_attestation_confirmed_count{exported_network="SN_SEPOLIA"}[24h])
                       /
-                      increase(validator_attestation_attestation_submitted_count{exported_network="SN_SEPOLIA"}[24h])
+                      (
+                        increase(validator_attestation_attestation_confirmed_count{exported_network="SN_SEPOLIA"}[24h])
+                        +
+                        increase(validator_attestation_missed_epochs_count{exported_network="SN_SEPOLIA"}[24h])
+                      )
                     )
                 instant: true
                 intervalMs: 1000
@@ -57,7 +61,7 @@ groups:
           execErrState: Alerting
           for: 30s
           annotations:
-            summary: ⚠️ Attestation success rate dropped below 99.5% over the last 24h on SEPOLIA (two or more failed attestations). Check logs or metrics.
+            summary: Attestation success rate dropped below 99.5% over the last 24h on SEPOLIA (two or more missed epochs). Check logs or metrics.
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
@@ -105,7 +109,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 15
+                            - 12.8
                         type: gte
                       operator:
                         type: and
@@ -180,7 +184,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 15 minutes ago on Sepolia.
+                Last attestation happened over 12 minutes and 48 seconds ago on Sepolia.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
@@ -307,7 +311,11 @@ groups:
                     100 * (
                       increase(validator_attestation_attestation_confirmed_count{exported_network="SN_MAIN"}[24h])
                       /
-                      increase(validator_attestation_attestation_submitted_count{exported_network="SN_MAIN"}[24h])
+                      (
+                        increase(validator_attestation_attestation_confirmed_count{exported_network="SN_MAIN"}[24h])
+                        +
+                        increase(validator_attestation_missed_epochs_count{exported_network="SN_MAIN"}[24h])
+                      )
                     )
                 instant: true
                 intervalMs: 1000
@@ -344,7 +352,7 @@ groups:
           execErrState: Alerting
           for: 30s
           annotations:
-            summary: ⚠️ Attestation success rate dropped below 99.5% over the last 24h on MAINNET (at least one failed attestation). Check logs or metrics.
+            summary: Attestation success rate dropped below 99.5% over the last 24h on MAINNET (at least one missed epoch). Check logs or metrics.
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
@@ -392,7 +400,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 110
+                            - 119
                         type: gte
                       operator:
                         type: and
@@ -459,7 +467,6 @@ groups:
                     type: __expr__
                     uid: __expr__
                 expression: $C && $D
-                hide: false
                 intervalMs: 1000
                 maxDataPoints: 43200
                 refId: E
@@ -468,7 +475,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 1 hour and 50 minutes ago on MAINNET.
+                Last attestation happened over 1 hour and 59 minutes ago on MAINNET.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
@@ -1153,6 +1160,170 @@ groups:
           for: 1m
           annotations:
             summary: 'Prometheus is permanently failing to write samples to Grafana Cloud. These samples are lost, not retried. Likely causes: an invalid or revoked token, or data rejected by the endpoint. Local Prometheus and all local alerts are unaffected.'
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+        - uid: efwmmr3x8ub5se
+          title: '[Sepolia] Node Stalled'
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: beo6ke2svn08wb
+              model:
+                editorMode: code
+                expr: 'current_block{network="testnet-sepolia"} - current_block{network="testnet-sepolia"} offset 3m   '
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              queryType: expression
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: Alerting
+          execErrState: Alerting
+          annotations:
+            summary: Pathfinder on SEPOLIA has not advanced its head for 3 minutes. The node is stalled. Both block gauges freeze together in this state, so the Node Lagging rule stays green and cannot see it.
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+        - uid: efwmmzb6crw8wb
+          title: '[Mainnet] Node Stalled'
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: beo6ke2svn08wb
+              model:
+                editorMode: code
+                expr: current_block{network="mainnet"} - current_block{network="mainnet"} offset 3m
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              queryType: expression
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 1
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: Alerting
+          execErrState: Alerting
+          annotations:
+            summary: Pathfinder on MAINNET has not advanced its head for 3 minutes. The node is stalled. Both block gauges freeze together in this state, so the Node Lagging rule stays green and cannot see it. A stall of this length can cost a mainnet epoch.
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+        - uid: dfwqaipq2f1mob
+          title: Gateway Submission Hung
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: beo6ke2svn08wb
+              model:
+                editorMode: code
+                expr: |-
+                    (
+                      sum by (network) (gateway_requests_total{method="add_transaction"})
+                      -
+                      sum by (network) (gateway_request_duration_seconds_count{method="add_transaction"})
+                    )
+                    -
+                    (
+                      sum by (network) (gateway_requests_total{method="add_transaction"} offset 10m)
+                      -
+                      sum by (network) (gateway_request_duration_seconds_count{method="add_transaction"} offset 10m)
+                    )
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              queryType: expression
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0
+                        type: gt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          noDataState: OK
+          execErrState: Alerting
+          annotations:
+            summary: 'A transaction submission to the Starknet gateway was issued but never completed. This is a known upstream defect: the submission has no timeout and can hang indefinitely (equilibriumco/pathfinder#3545). Two such hangs inside one attestation window cost an epoch on Sepolia.'
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
