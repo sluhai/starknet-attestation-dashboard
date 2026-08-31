@@ -3,9 +3,9 @@ groups:
     - orgId: 1
       name: attestation-monitoring
       folder: attestation-monitoring
-      interval: 30s
+      interval: 10s
       rules:
-        - uid: aeoxwk6f4terkb
+        - uid: afwvcm5s59ji8e
           title: '[Sepolia] Attestation Success Rate Below 99.5%'
           condition: C
           data:
@@ -66,7 +66,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: aeoy7j3kdkwsgb
+        - uid: afwvcovglbncwf
           title: '[Sepolia] Last Attestation Delay'
           condition: E
           data:
@@ -190,7 +190,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: deoy87w3iyv40f
+        - uid: dfwvcrecitkowc
           title: '[Sepolia] Attestation Failures Detected'
           condition: C
           data:
@@ -240,8 +240,9 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
+            repeat_interval: 1d
           missing_series_evals_to_resolve: 1
-        - uid: dep1h1shj9slcb
+        - uid: ffwvcrp4a251cc
           title: '[Sepolia] Attestation Service Down'
           condition: C
           data:
@@ -296,7 +297,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: aep64tltcifpcd
+        - uid: bfwvcs4fbnr40c
           title: '[Mainnet] Attestation Success Rate Below 99.5%'
           condition: C
           data:
@@ -357,7 +358,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: aep64znuofw1sf
+        - uid: afwvcsi8byfwge
           title: '[Mainnet] Last Attestation Delay'
           condition: E
           data:
@@ -481,7 +482,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: aep658t640we8c
+        - uid: afwvcsw3wndhcf
           title: '[Mainnet] Attestation Failures Detected'
           condition: C
           data:
@@ -531,8 +532,9 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
+            repeat_interval: 1d
           missing_series_evals_to_resolve: 1
-        - uid: dep65c9nxcb28a
+        - uid: cfwvct8fx3m68c
           title: '[Mainnet] Attestation Service Down'
           condition: C
           data:
@@ -587,7 +589,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: dfvd6kvpk0qv4c
+        - uid: afwvctgscdzb4f
           title: '[Mainnet] Operational Account Balance Low'
           condition: C
           data:
@@ -639,7 +641,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: bfvd7tbbznz0gf
+        - uid: dfwvctsv77mdca
           title: '[Sepolia] Operational Account Balance Low'
           condition: C
           data:
@@ -691,7 +693,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: efvd88nxn00zkf
+        - uid: dfwvcu981rwu8a
           title: '[Mainnet] Missed Epoch Detected'
           condition: C
           data:
@@ -742,8 +744,9 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
+            repeat_interval: 1d
           missing_series_evals_to_resolve: 1
-        - uid: dfvd8iwm2zev4b
+        - uid: cfwvcul8jp05cf
           title: '[Sepolia] Missed Epoch Detected'
           condition: C
           data:
@@ -794,8 +797,9 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
+            repeat_interval: 1d
           missing_series_evals_to_resolve: 1
-        - uid: ffvdiye4bqz9cb
+        - uid: dfwvcuu7b2olcc
           title: '[Mainnet] Node Lagging Behind Chain'
           condition: C
           data:
@@ -847,7 +851,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: ffvdjam65sdfke
+        - uid: afwvcv4itz01sa
           title: '[Sepolia] Node Lagging Behind Chain'
           condition: C
           data:
@@ -899,7 +903,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
           missing_series_evals_to_resolve: 1
-        - uid: efvjkh0zd1pfkc
+        - uid: dfwvcvi2tmvwgb
           title: Heartbeat
           condition: C
           data:
@@ -950,7 +954,7 @@ groups:
           notification_settings:
             receiver: grafana-default-email
             repeat_interval: 1h
-        - uid: ffw85hemsl81sb
+        - uid: efwvcvs1xjdhcc
           title: '[Mainnet] Pathfinder Down'
           condition: C
           data:
@@ -1002,7 +1006,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: dfw8641h8nta8f
+        - uid: cfwvcw0ajhblsc
           title: '[Sepolia] Pathfinder Down'
           condition: C
           data:
@@ -1054,7 +1058,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: efw8a6k3dwflse
+        - uid: dfwvcwcdjarcwe
           title: Remote Write Behind
           condition: C
           data:
@@ -1111,7 +1115,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: efw8bgsjd6sqoa
+        - uid: bfwvcwleil6v4c
           title: Remote Write Failing
           condition: C
           data:
@@ -1163,7 +1167,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: efwmmr3x8ub5se
+        - uid: afwvcwt6jpedcb
           title: '[Sepolia] Node Stalled'
           condition: C
           data:
@@ -1214,7 +1218,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: efwmmzb6crw8wb
+        - uid: afwvcx0ihh5oga
           title: '[Mainnet] Node Stalled'
           condition: C
           data:
@@ -1265,7 +1269,7 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
-        - uid: dfwqaipq2f1mob
+        - uid: dfwvcxc9cacxse
           title: Gateway Submission Hung
           condition: C
           data:
