@@ -1,7 +1,7 @@
 apiVersion: 1
 groups:
     - orgId: 1
-      name: attestation-monitoring
+      name: main
       folder: attestation-monitoring
       interval: 10s
       rules:
@@ -109,7 +109,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 12.8
+                            - 12.85
                         type: gte
                       operator:
                         type: and
@@ -184,7 +184,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 12 minutes and 48 seconds ago on Sepolia.
+                Last attestation happened over 12 minutes and 51 seconds ago on Sepolia.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
@@ -401,7 +401,7 @@ groups:
                 conditions:
                     - evaluator:
                         params:
-                            - 119
+                            - 119.88
                         type: gte
                       operator:
                         type: and
@@ -476,7 +476,7 @@ groups:
           execErrState: Alerting
           annotations:
             summary: |-
-                Last attestation happened over 1 hour and 59 minutes ago on MAINNET.
+                Last attestation happened over 1 hour, 59 minutes, and 53 seconds ago on MAINNET.
                 Check if the attestation tool is running and synced.
           isPaused: false
           notification_settings:
