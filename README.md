@@ -1,53 +1,27 @@
-# Starknet Validator: Grafana Dashboards and Alerts
+# Starknet validator dashboards and alerts
 
-Two Grafana dashboards and one alert rule set for running a Starknet validator.
-
-They visualise the Prometheus metrics exposed by the [eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) tool and by the [pathfinder](https://github.com/eqlabs/pathfinder) node.
-
-## What is here
+Grafana dashboards and alert rules for running a Starknet validator, built around the metrics exposed by
+[eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) and by the
+[pathfinder](https://github.com/eqlabs/pathfinder) node behind it.
 
 | File | What it is |
 | --- | --- |
-| `starknet-attestation-dashboard.json` | Attestation dashboard: epochs, attestations, success rate, operational balance |
-| `starknet-node-dashboard.json` | Node dashboard: sync health, gateway, block pipeline, RPC |
-| `attestation-monitoring.yaml` | 22 Grafana-managed alert rules |
+| `starknet-attestation-dashboard.json` | Attestation dashboard. Top row open, seven analysis rows collapsed. |
+| `starknet-node-dashboard.json` | Pathfinder node health. Status row open, four rows collapsed. |
+| `attestation-monitoring.yaml` | 22 alert rules, Grafana provisioning format. |
 
-### Attestation dashboard
+Both dashboards are in the Grafana 13 schema v2 format and use the Prometheus data source by its internal
+identifier, so after importing you may need to repoint them at your own data source.
 
-- Starknet latest block number
-- Current epoch ID, epoch length, epoch progress
-- Epoch start block and assigned block
-- Blocks remaining until attestation
-- Time since last successful attestation
-- Success rate (%)
-- Submitted, confirmed and failed attestations
-- Missed epochs
-- Operational account balance (STRK)
+## Prometheus jobs
 
-### Node dashboard
-
-Top row answers "is anything wrong right now": node running, in sync, node stall in the last 24h, hung gateway submissions in the last 24h, restarts in the last 24h. Four collapsed rows below hold the detail: sync lag and block intake rate, gateway latency and failures by reason, block pipeline timing, and RPC calls from the attestation tool.
-
-The stall lamp shows the clock time of the last stall rather than a word, so the moment can be found directly on the graphs below it.
-
-## Setup
-
-**1. Expose metrics.** Run the attestation tool with a metrics address, one instance per network:
-
-```
---metrics-address 127.0.0.1:9095
---metrics-address 127.0.0.1:9096
-```
-
-Pathfinder exposes its own metrics; the node dashboard expects them on `9000` for mainnet and `9001` for testnet.
-
-**2. Scrape them.** Add both jobs to `prometheus.yml`:
+The dashboards expect two scrape jobs. The relabelling in the first one is what produces the
+`exported_network` label the attestation dashboard filters on.
 
 ```yaml
 - job_name: "starknet-attestation"
   static_configs:
-    - targets: ['localhost:9095']
-    - targets: ['localhost:9096']
+    - targets: ['localhost:9095', 'localhost:9096']
   relabel_configs:
     - source_labels: [__address__]
       regex: localhost:9095
@@ -60,30 +34,36 @@ Pathfinder exposes its own metrics; the node dashboard expects them on `9000` fo
 
 - job_name: "pathfinder"
   static_configs:
-    - targets: ['localhost:9000']
-    - targets: ['localhost:9001']
+    - targets: ['localhost:9000', 'localhost:9001']
 ```
 
-The attestation dashboard and the alert rules select networks by `exported_network` (`SN_MAIN`, `SN_SEPOLIA`). The node dashboard uses pathfinder's own `network` label (`mainnet`, `testnet-sepolia`) — no relabelling needed for it.
+Run the attestation tool with `--metrics-address 127.0.0.1:9095` for mainnet and `:9096` for testnet, and
+pathfinder with `--monitor-address 0.0.0.0:9000`, mapped to host port 9000 for mainnet and 9001 for testnet.
+Reload Prometheus after editing the configuration.
 
-**3. Restart Prometheus** and add it as a data source in Grafana.
+## Importing a dashboard
 
-**4. Import the dashboards.** Both files are in the Grafana v2 dashboard schema (`apiVersion: dashboard.grafana.app/v2`) and were exported from Grafana 13.2. Open the dashboard, then `?editview=json-model` → "Edit as code", paste the file, `Apply changes`, then `Save`. Applying alone only changes what is on screen; without `Save` the change is lost on reload.
+These are schema v2 files; the old import-by-paste path does not accept them. Open the dashboard, add
+`?editview=json-model` to its address, follow `Take me there`, paste the file into `Edit as code`, then
+`Apply changes` — **and then `Save`**. `Apply changes` only redraws the screen; without `Save` nothing is
+written to the server.
 
-**5. Import the alerts.** `attestation-monitoring.yaml` is a Grafana provisioning export, not a Prometheus rule file. The `Alerting → Import alert rules` page will not take it — that page accepts Prometheus-format rules only. Two paths that do work with this format: place the file in `/etc/grafana/provisioning/alerting/` and restart Grafana, which makes the rules read-only in the UI; or send it through the provisioning API with the `X-Disable-Provenance: true` header, which leaves them editable.
+## Importing the alert rules
 
-## Two things the alert file does not carry
+The `Alerting → Import alert rules` page accepts Prometheus rule format only and will refuse this file. Use
+one of these instead:
 
-**The contact point.** The rules reference it by name, `grafana-default-email`. The contact point itself, with the email address, lives elsewhere and is not part of the export — create it before importing, or the rules will have nowhere to deliver.
+- drop the file into `/etc/grafana/provisioning/alerting/` and restart Grafana — the rules become
+  provisioned and read-only in the interface;
+- or POST it to the provisioning API with the header `X-Disable-Provenance: true` — the rules stay editable.
 
-**The data source binding.** The rules point at a Prometheus data source by its internal UID. If your Prometheus has a different UID, the rules will import and stay silent. Replace the UID in the file before importing, or fix it afterwards in each rule.
+Two things the export does not carry, and without them the rules load but do not work:
 
-## Alert rules
+- the contact point. The rules reference it by name (`grafana-default-email`); create it yourself.
+- the data source identifier. If your Prometheus has a different one, every rule needs repointing.
 
-Nine rules per network, plus four shared ones.
+## Notes on the node dashboard
 
-Per network (`[Mainnet]` and `[Sepolia]`): attestation success rate below 99.5%, last attestation delay, attestation failures detected, attestation service down, operational account balance low, missed epoch detected, node lagging behind chain, pathfinder down, node stalled.
-
-Shared: heartbeat, remote write behind, remote write failing, gateway submission hung.
-
-The heartbeat rule fires permanently by design: it is the detector for a broken email path. If those emails stop arriving, alerting itself is broken, not the validator.
+Three panels use `rpc_websocket_connections`, `rpc_websocket_connections_closed_total` and
+`rpc_websocket_connections_rejected_total`, which exist only in pathfinder 0.24.0 and newer. On older
+versions they read `No data`; everything else works from 0.23 onwards.
