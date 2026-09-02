@@ -139,7 +139,7 @@
         "spec": {
           "id": 902,
           "title": "Hung submissions, last 24h",
-          "description": "Submissions that hung within the last 24 hours. OK means none did. The Gateway Submission Hung alert rule uses a ten-minute window, so it clears long before this panel does: the alert answers whether a hang is happening now, this panel whether one happened today. The running total since the node started is in the Gateway row below.",
+          "description": "Submissions that hung within the last 24 hours. OK means none did. The Gateway Submission Hung alert rule uses a ten-minute window, so it clears long before this panel does: the alert answers whether a hang is happening now, this panel whether one happened today. The running total since the node started is in the Gateway row below. What the counter actually measures was clarified by pathfinder maintainers on issue equilibriumco/pathfinder#3545: the node does cancel such a submission after --rpc.request-timeout, 120 seconds by default, but the cancellation is recorded nowhere — the completion counter does not move, no failure counter appears and nothing is logged. So a step here means a submission the node gave up on, not one still running; from the outside the two look identical. Pull request 3549 is meant to fix that, and once it ships this wording needs revisiting.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -1032,7 +1032,7 @@
         "spec": {
           "id": 304,
           "title": "Hung submissions since node start",
-          "description": "Running total of attestation submissions that never came back. It only resets when pathfinder restarts, so a non-zero number here is history, not a live problem.",
+          "description": "Running total of attestation submissions that never came back. It only resets when pathfinder restarts, so a non-zero number here is history, not a live problem. What the counter actually measures was clarified by pathfinder maintainers on issue equilibriumco/pathfinder#3545: the node does cancel such a submission after --rpc.request-timeout, 120 seconds by default, but the cancellation is recorded nowhere — the completion counter does not move, no failure counter appears and nothing is logged. So a step here means a submission the node gave up on, not one still running; from the outside the two look identical. Pull request 3549 is meant to fix that, and once it ships this wording needs revisiting.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -1119,7 +1119,7 @@
         "spec": {
           "id": 301,
           "title": "Hung submissions over time",
-          "description": "Each step up is one attestation submission that left the node and never came back. A flat line means nothing new hung; the line only falls when pathfinder restarts.",
+          "description": "Each step up is one attestation submission that left the node and never came back. A flat line means nothing new hung; the line only falls when pathfinder restarts. What the counter actually measures was clarified by pathfinder maintainers on issue equilibriumco/pathfinder#3545: the node does cancel such a submission after --rpc.request-timeout, 120 seconds by default, but the cancellation is recorded nowhere — the completion counter does not move, no failure counter appears and nothing is logged. So a step here means a submission the node gave up on, not one still running; from the outside the two look identical. Pull request 3549 is meant to fix that, and once it ships this wording needs revisiting.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
