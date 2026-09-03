@@ -2651,122 +2651,6 @@
           }
         }
       },
-      "panel-3009": {
-        "kind": "Panel",
-        "spec": {
-          "data": {
-            "kind": "QueryGroup",
-            "spec": {
-              "queries": [
-                {
-                  "kind": "PanelQuery",
-                  "spec": {
-                    "hidden": false,
-                    "query": {
-                      "datasource": {
-                        "name": "beo6ke2svn08wb"
-                      },
-                      "group": "prometheus",
-                      "kind": "DataQuery",
-                      "spec": {
-                        "editorMode": "code",
-                        "expr": "validator_attestation_operational_account_balance_strk{exported_network=~\"$exported_network\"}",
-                        "legendFormat": "{{exported_network}}",
-                        "range": true
-                      },
-                      "version": "v0"
-                    },
-                    "refId": "A"
-                  }
-                }
-              ],
-              "queryOptions": {},
-              "transformations": []
-            }
-          },
-          "description": "STRK left on the operational account, the account attestation transactions are paid from. The line falls steadily and jumps up when topped up. The alert fires at 500 STRK on mainnet and 20000 on Sepolia.",
-          "id": 3009,
-          "links": [],
-          "title": "Operational balance over time",
-          "vizConfig": {
-            "group": "timeseries",
-            "kind": "VizConfig",
-            "spec": {
-              "fieldConfig": {
-                "defaults": {
-                  "color": {
-                    "mode": "palette-classic"
-                  },
-                  "custom": {
-                    "axisBorderShow": false,
-                    "axisCenteredZero": false,
-                    "axisColorMode": "text",
-                    "axisLabel": "",
-                    "axisPlacement": "auto",
-                    "barAlignment": 0,
-                    "barWidthFactor": 0.6,
-                    "drawStyle": "line",
-                    "fillOpacity": 8,
-                    "gradientMode": "none",
-                    "hideFrom": {
-                      "legend": false,
-                      "tooltip": false,
-                      "viz": false
-                    },
-                    "insertNulls": false,
-                    "lineInterpolation": "linear",
-                    "lineWidth": 2,
-                    "pointSize": 6,
-                    "scaleDistribution": {
-                      "type": "linear"
-                    },
-                    "showPoints": "never",
-                    "showValues": false,
-                    "spanNulls": false,
-                    "stacking": {
-                      "group": "A",
-                      "mode": "none"
-                    },
-                    "thresholdsStyle": {
-                      "mode": "off"
-                    }
-                  },
-                  "thresholds": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "green",
-                        "value": 0
-                      }
-                    ]
-                  },
-                  "unit": "short",
-                  "decimals": 0
-                },
-                "overrides": []
-              },
-              "options": {
-                "legend": {
-                  "calcs": [
-                    "lastNotNull",
-                    "max"
-                  ],
-                  "displayMode": "table",
-                  "placement": "right",
-                  "showLegend": true,
-                  "width": 300
-                },
-                "tooltip": {
-                  "hideZeros": false,
-                  "mode": "multi",
-                  "sort": "desc"
-                }
-              }
-            },
-            "version": "13.2.0"
-          }
-        }
-      },
       "panel-3010": {
         "kind": "Panel",
         "spec": {
@@ -4036,7 +3920,6 @@
                   "color": {
                     "mode": "thresholds"
                   },
-                  "decimals": null,
                   "thresholds": {
                     "mode": "absolute",
                     "steps": [
@@ -4219,7 +4102,7 @@
               "transformations": []
             }
           },
-          "description": "The same ratio over a month. On the local Grafana this works once a month of history has accumulated; in Grafana Cloud the retention is 14 days, so there the panel can only ever show the last two weeks and will read lower than reality if data is missing at the start of the window.",
+          "description": "The same ratio over a month. It becomes meaningful once a month of history has accumulated in the local Prometheus, which starts on 27 August 2026. On a shorter history the ratio itself is still correct - numerator and denominator are computed over the same range - but it covers only the history that exists, not the full 30 days. This panel exists on the local Grafana only: Grafana Cloud keeps 14 days, so a 30-day window is unreachable there.",
           "id": 4010,
           "links": [],
           "title": "Success rate, 30 days",
@@ -5024,6 +4907,186 @@
             "version": "13.2.0"
           }
         }
+      },
+      "panel-4015": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "(increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[90d]) / (increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[90d]) + increase(validator_attestation_missed_epochs_count{exported_network=~\"$exported_network\"}[90d]))) * 100",
+                        "legendFormat": "{{exported_network}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "Confirmed attestations over confirmed plus missed, across the last 90 days. This is the window the StarkWare delegation program states: 99 percent liveness on mainnet and testnet. Local Prometheus starts on 27 August 2026, so a full 90-day window is only available from late November 2026; before that the panel covers whatever history exists. The ratio itself stays correct on a short window, because numerator and denominator are computed over the same range - only the absolute counts are partial. This panel exists on the local Grafana only: Grafana Cloud keeps 14 days of history, so there it could never read correctly.",
+          "id": 4015,
+          "links": [],
+          "title": "Success rate, 90 days",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 3,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "orange",
+                        "value": 99
+                      },
+                      {
+                        "color": "green",
+                        "value": 99.5
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {
+                  "titleSize": 14,
+                  "valueSize": 32
+                },
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0"
+          }
+        }
+      },
+      "panel-4016": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "beo6ke2svn08wb"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "increase(validator_attestation_missed_epochs_count{exported_network=~\"$exported_network\"}[90d])",
+                        "legendFormat": "{{exported_network}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "Epochs that ended without a confirmed attestation over the last 90 days. This is the count behind the 90-day success rate next to it. Mainnet runs about one epoch an hour, so a 90-day window holds roughly 2160 epochs and the 99 percent floor allows about 21 misses; Sepolia runs about nine times faster and its budget is correspondingly larger, which is why this panel is left uncoloured - one colour scale cannot serve both networks. Same history caveat as the 90-day success rate: local Prometheus starts on 27 August 2026.",
+          "id": 4016,
+          "links": [],
+          "title": "Missed epochs, 90 days",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "text",
+                        "value": 0
+                      }
+                    ]
+                  },
+                  "unit": "short"
+                },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
+                "text": {
+                  "titleSize": 14,
+                  "valueSize": 32
+                },
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0"
+          }
+        }
       }
     },
     "layout": {
@@ -5320,7 +5383,7 @@
                           "name": "panel-3004"
                         },
                         "height": 4,
-                        "width": 12,
+                        "width": 6,
                         "x": 12,
                         "y": 4
                       }
@@ -5333,9 +5396,9 @@
                           "name": "panel-4014"
                         },
                         "height": 4,
-                        "width": 24,
-                        "x": 0,
-                        "y": 8
+                        "width": 6,
+                        "x": 18,
+                        "y": 4
                       }
                     }
                   ]
@@ -5515,10 +5578,10 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-4012"
+                          "name": "panel-4015"
                         },
-                        "height": 8,
-                        "width": 12,
+                        "height": 4,
+                        "width": 6,
                         "x": 12,
                         "y": 0
                       }
@@ -5528,25 +5591,12 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-4011"
+                          "name": "panel-4016"
                         },
                         "height": 4,
                         "width": 6,
-                        "x": 0,
-                        "y": 4
-                      }
-                    },
-                    {
-                      "kind": "GridLayoutItem",
-                      "spec": {
-                        "element": {
-                          "kind": "ElementReference",
-                          "name": "panel-4013"
-                        },
-                        "height": 4,
-                        "width": 6,
-                        "x": 6,
-                        "y": 4
+                        "x": 18,
+                        "y": 0
                       }
                     }
                   ]
@@ -5568,7 +5618,7 @@
                       "spec": {
                         "element": {
                           "kind": "ElementReference",
-                          "name": "panel-3009"
+                          "name": "panel-4012"
                         },
                         "height": 8,
                         "width": 12,
@@ -5610,8 +5660,21 @@
                           "name": "panel-3012"
                         },
                         "height": 4,
-                        "width": 12,
+                        "width": 6,
                         "x": 12,
+                        "y": 4
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-4013"
+                        },
+                        "height": 4,
+                        "width": 6,
+                        "x": 18,
                         "y": 4
                       }
                     }
@@ -5729,7 +5792,7 @@
                           "name": "panel-3015"
                         },
                         "height": 4,
-                        "width": 8,
+                        "width": 6,
                         "x": 0,
                         "y": 7
                       }
@@ -5742,8 +5805,8 @@
                           "name": "panel-3016"
                         },
                         "height": 4,
-                        "width": 8,
-                        "x": 8,
+                        "width": 6,
+                        "x": 6,
                         "y": 7
                       }
                     },
@@ -5755,8 +5818,21 @@
                           "name": "panel-3017"
                         },
                         "height": 4,
-                        "width": 8,
-                        "x": 16,
+                        "width": 6,
+                        "x": 12,
+                        "y": 7
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-4011"
+                        },
+                        "height": 4,
+                        "width": 6,
+                        "x": 18,
                         "y": 7
                       }
                     }

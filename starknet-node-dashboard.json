@@ -2448,10 +2448,10 @@
                           "kind": "ElementReference",
                           "name": "panel-102"
                         },
-                        "x": 0,
-                        "y": 0,
+                        "height": 3,
                         "width": 12,
-                        "height": 5
+                        "x": 0,
+                        "y": 0
                       }
                     },
                     {
@@ -2461,10 +2461,10 @@
                           "kind": "ElementReference",
                           "name": "panel-104"
                         },
-                        "x": 12,
-                        "y": 0,
+                        "height": 3,
                         "width": 12,
-                        "height": 5
+                        "x": 12,
+                        "y": 0
                       }
                     },
                     {
@@ -2474,10 +2474,10 @@
                           "kind": "ElementReference",
                           "name": "panel-105"
                         },
-                        "x": 0,
-                        "y": 5,
+                        "height": 7,
                         "width": 12,
-                        "height": 6
+                        "x": 0,
+                        "y": 3
                       }
                     },
                     {
@@ -2487,10 +2487,10 @@
                           "kind": "ElementReference",
                           "name": "panel-106"
                         },
-                        "x": 12,
-                        "y": 5,
+                        "height": 7,
                         "width": 12,
-                        "height": 6
+                        "x": 12,
+                        "y": 3
                       }
                     }
                   ]
@@ -2695,7 +2695,7 @@
       "node"
     ],
     "timeSettings": {
-      "autoRefresh": "30s",
+      "autoRefresh": "1m",
       "autoRefreshIntervals": [
         "5s",
         "10s",
