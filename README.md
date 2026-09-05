@@ -1,48 +1,57 @@
 # Starknet validator dashboards and alerts
 
-Grafana dashboards and alert rules for running a Starknet validator, built around the metrics exposed by
-[eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation) and by the
-[pathfinder](https://github.com/eqlabs/pathfinder) node behind it.
+Grafana dashboards and alert rules for a Starknet validator, built on the metrics from
+[eqlabs/starknet-validator-attestation](https://github.com/eqlabs/starknet-validator-attestation)
+and the [pathfinder](https://github.com/eqlabs/pathfinder) node behind it.
 
 | File | What it is |
 | --- | --- |
-| `starknet-attestation-dashboard.json` | Attestation dashboard. Top row open, seven analysis rows collapsed. |
-| `starknet-node-dashboard.json` | Pathfinder node health. Status row open, four rows collapsed. |
+| `starknet-attestation-dashboard.json` | Attestation dashboard. Eight rows, only the top one open. |
+| `starknet-node-dashboard.json` | Pathfinder node health. Five rows, only `Status` open. |
 | `attestation-monitoring.yaml` | 22 alert rules, Grafana provisioning format. |
 
-Both dashboards are in the Grafana 13 schema v2 format.
+## Loading a dashboard
 
-## Data source
+These are Grafana 13 schema v2 files. Neither carries a dashboard identifier, so the same file works
+whether you are creating a dashboard or replacing one.
 
-Neither dashboard hardcodes a data source. Each one carries a `Data source` selector at the top, and every
-panel reads its Prometheus from there, so nothing has to be edited panel by panel. On load Grafana picks a
-Prometheus data source for you; if you have more than one, check the selector and switch it. The choice is
-kept in the address of the page, so a link you copy carries it with you.
+To create one: `+` → `New dashboard` → open the toolbar on the right edge → the `{}` icon → select all the
+text in the editor and paste the file over it → `Apply changes` → **`Save`**. Grafana assigns the
+identifier itself.
+
+To replace one you already have: open it → `Edit` → the same `{}` icon → select all → paste → `Apply
+changes` → **`Save`**. The dashboard keeps its identifier and its address.
+
+Two things that trip people up. The editor opens with the current dashboard model already in it, so select
+all before pasting; otherwise you end up with two JSON documents in a row and `Apply changes` stays
+disabled. And `Apply changes` only redraws the screen — without `Save` nothing reaches the server.
+
+The title comes from the file. Grafana refuses to create a second dashboard with a title that already
+exists in the same folder, so rename one of them if that happens.
+
+You do not have to repoint anything afterwards. Neither dashboard hardcodes a data source: each has a
+`Data source` selector at the top and every panel reads it from there. Grafana picks a Prometheus for you
+on load; if you have more than one, switch it in that selector.
 
 ## The Network selector
 
-Both dashboards carry a `Network` selector with three fixed choices: `Mainnet`, `Sepolia`, `Both`, and
-`Both` is the default. Each choice is a regular expression that matches every spelling of the network at
-once, because the metrics do not agree on one:
+Three choices: `Mainnet`, `Sepolia`, `Both`, and `Both` is the default.
 
-- the attestation tool labels its series `exported_network`, with `SN_MAIN` and `SN_SEPOLIA`;
-- pathfinder labels its series `network`, with `mainnet` and `testnet-sepolia`;
-- `up` and `process_start_time_seconds` carry no network label at all, and the network is only visible as
-  the scrape port inside `instance`, `:9000` for mainnet and `:9001` for testnet.
+Each value is a regular expression, because the metrics name the network three different ways. The
+attestation tool uses the label `exported_network` with `SN_MAIN` and `SN_SEPOLIA`; pathfinder uses
+`network` with `mainnet` and `testnet-sepolia`; `up` and `process_start_time_seconds` carry no network
+label at all, and there the network is the scrape port inside `instance`, `:9000` for mainnet and `:9001`
+for testnet. One value covers all of them: `Sepolia` is `SN_SEPOLIA|testnet-sepolia` in the attestation
+dashboard and `testnet-sepolia|.*9001` in the node dashboard.
 
-So `Sepolia` holds `SN_SEPOLIA|testnet-sepolia` in the attestation dashboard and
-`testnet-sepolia|.*9001` in the node dashboard. Regular expression matches in PromQL are anchored at both
-ends, so the branches that do not belong to a given label simply never match. Two panels are deliberately
-outside this: `SN_MAIN Attestations` and `SN_SEPOLIA Attestations` are each pinned to one network by
-design, and empty when the other one is selected.
+Two panels ignore the selector on purpose. `SN_MAIN Attestations` and `SN_SEPOLIA Attestations` are each
+pinned to one network, so one of them is empty unless `Both` is selected.
 
-If you run a third network, add a line to the selector by hand — it is a custom variable and does not query
-Prometheus.
+To add a third network, edit the variable by hand — it is a fixed list, not a query.
 
 ## Prometheus jobs
 
-The dashboards expect two scrape jobs. The relabelling in the first one is what produces the
-`exported_network` label the attestation dashboard filters on.
+Two scrape jobs. The relabelling in the first one is what creates the `exported_network` label.
 
 ```yaml
 - job_name: "starknet-attestation"
@@ -64,47 +73,31 @@ The dashboards expect two scrape jobs. The relabelling in the first one is what 
 ```
 
 Run the attestation tool with `--metrics-address 127.0.0.1:9095` for mainnet and `:9096` for testnet, and
-pathfinder with `--monitor-address 0.0.0.0:9000`, mapped to host port 9000 for mainnet and 9001 for testnet.
-Reload Prometheus after editing the configuration.
+pathfinder with `--monitor-address 0.0.0.0:9000`, mapped to host port 9000 for mainnet and 9001 for
+testnet. Reload Prometheus afterwards.
 
-## Importing a dashboard
+## Loading the alert rules
 
-These are schema v2 files; the old import-by-paste path does not accept them. Open the dashboard, add
-`?editview=json-model` to its address, follow `Take me there`, paste the file into `Edit as code`, then
-`Apply changes` — **and then `Save`**. `Apply changes` only redraws the screen; without `Save` nothing is
-written to the server.
+`Alerting → Import alert rules` will refuse this file: that page takes Prometheus rule format, this is
+Grafana provisioning format. Two ways that work:
 
-The same editor is two clicks away without touching the address: in edit mode, open the toolbar on the
-right edge of the dashboard and click the `{}` icon.
+- put the file in `/etc/grafana/provisioning/alerting/` and restart Grafana. The rules load but become
+  read-only in the interface;
+- or POST it to the provisioning API with the header `X-Disable-Provenance: true`. The rules stay editable.
 
-## Importing the alert rules
+The export leaves out two things, and without them the rules load but do nothing: the contact point, which
+the rules call by name (`grafana-default-email`), and the data source. Unlike the dashboards, the rules
+name Prometheus directly, so each one needs repointing if yours has a different identifier.
 
-The `Alerting → Import alert rules` page accepts Prometheus rule format only and will refuse this file. Use
-one of these instead:
+## Worth knowing
 
-- drop the file into `/etc/grafana/provisioning/alerting/` and restart Grafana — the rules become
-  provisioned and read-only in the interface;
-- or POST it to the provisioning API with the header `X-Disable-Provenance: true` — the rules stay editable.
+Node dashboard: three panels use `rpc_websocket_connections`, `rpc_websocket_connections_closed_total` and
+`rpc_websocket_connections_rejected_total`, which exist only in pathfinder 0.24.0 and newer; on older
+versions they read `No data`. One of them, `Websocket closes and rejects, last 24h`, is also left out of
+the `Network` filter: those two counters appear only at the first close and the first refusal, so their
+labels cannot be counted on, and filtering could hide the rare event the panel is there for.
 
-Two things the export does not carry, and without them the rules load but do not work:
-
-- the contact point. The rules reference it by name (`grafana-default-email`); create it yourself.
-- the data source identifier. If your Prometheus has a different one, every rule needs repointing.
-
-## Notes on the node dashboard
-
-Three panels use `rpc_websocket_connections`, `rpc_websocket_connections_closed_total` and
-`rpc_websocket_connections_rejected_total`, which exist only in pathfinder 0.24.0 and newer. On older
-versions they read `No data`; everything else works from 0.23 onwards.
-
-The panel `Websocket closes and rejects, last 24h` is not filtered by the `Network` selector. Both counters
-come into existence at the first close and the first refusal, so their label set cannot be checked in
-advance, and filtering on a label that may not be there would hide the rare event the panel exists for.
-
-## Notes on the attestation dashboard
-
-The `Long-term trends` row holds `Success rate, 7 days`, `Success rate, 30 days`, `Success rate, 90 days`
-and `Missed epochs, 90 days`. They need that much history in Prometheus to mean what their names say.
-On a store that keeps less — Grafana Cloud on the free plan keeps 14 days — the two long success rates
-still compute a correct ratio, but over the history that exists rather than over the window in the title,
-and `Missed epochs, 90 days` undercounts. Delete them, or read them knowing that.
+Attestation dashboard: `Success rate, 30 days`, `Success rate, 90 days` and `Missed epochs, 90 days` need
+that much history to mean what they say. Grafana Cloud on the free plan keeps 14 days — the two rates then
+stay correct as ratios but cover less time than their titles claim, and the missed-epoch count comes out
+short. Delete them there, or read them knowing that.

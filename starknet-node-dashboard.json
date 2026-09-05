@@ -2,7 +2,7 @@
   "apiVersion": "dashboard.grafana.app/v2",
   "kind": "Dashboard",
   "metadata": {
-    "name": "pathfinder-node"
+    "name": ""
   },
   "spec": {
     "annotations": [
