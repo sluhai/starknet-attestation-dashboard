@@ -43,7 +43,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -121,7 +121,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -216,7 +216,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -302,7 +302,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -393,7 +393,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -485,7 +485,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -506,7 +506,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -649,7 +649,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -670,7 +670,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -813,7 +813,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -834,7 +834,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1008,7 +1008,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1089,7 +1089,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1170,7 +1170,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1251,7 +1251,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1332,7 +1332,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1414,7 +1414,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1496,7 +1496,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1590,7 +1590,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1684,7 +1684,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1795,7 +1795,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1816,7 +1816,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1910,7 +1910,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2028,7 +2028,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2114,7 +2114,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2208,7 +2208,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2325,7 +2325,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2438,7 +2438,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2550,7 +2550,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2664,7 +2664,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2750,7 +2750,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2844,7 +2844,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2930,7 +2930,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3043,7 +3043,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3064,7 +3064,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3180,7 +3180,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3270,7 +3270,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3360,7 +3360,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3446,7 +3446,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -3540,13 +3540,13 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "highest_block - current_block",
+                        "expr": "highest_block{network=~\"$exported_network\"} - current_block{network=~\"$exported_network\"}",
                         "legendFormat": "{{network}}",
                         "range": true
                       },
@@ -3560,7 +3560,7 @@
               "transformations": []
             }
           },
-          "description": "How many blocks the local node is behind the head of the chain. Normal is 0 to 2. The attestation tool reads block numbers from this node, so a node that falls behind attests late or not at all. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, so the Network variable at the top of the dashboard does not filter it — both networks are always shown.",
+          "description": "How many blocks the local node is behind the head of the chain. Normal is 0 to 2. The attestation tool reads block numbers from this node, so a node that falls behind attests late or not at all. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, while the attestation metrics use exported_network with SN_MAIN and SN_SEPOLIA. The Network variable holds a value that matches both vocabularies at once, so this panel follows the selection like the rest of the dashboard.",
           "id": 4001,
           "links": [],
           "title": "Node sync lag",
@@ -3657,13 +3657,13 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "round(increase(gateway_requests_failed_total{reason=\"timeout\"}[$__rate_interval])) > 0",
+                        "expr": "round(increase(gateway_requests_failed_total{reason=\"timeout\", network=~\"$exported_network\"}[$__rate_interval])) > 0",
                         "legendFormat": "{{network}} {{method}}",
                         "range": true
                       },
@@ -3677,7 +3677,7 @@
               "transformations": []
             }
           },
-          "description": "Requests from the node to the Starknet gateway that timed out; zero values are filtered out, so an empty panel means there were none. This is the failure reason that mattered in both real block stalls seen so far — the constant background of the other reason, starknet, is deliberately not drawn here. A cluster of dots at the same minute as a missed epoch is the evidence that the cause was outside this server. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, so the Network variable at the top of the dashboard does not filter it — both networks are always shown.",
+          "description": "Requests from the node to the Starknet gateway that timed out; zero values are filtered out, so an empty panel means there were none. This is the failure reason that mattered in both real block stalls seen so far — the constant background of the other reason, starknet, is deliberately not drawn here. A cluster of dots at the same minute as a missed epoch is the evidence that the cause was outside this server. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, while the attestation metrics use exported_network with SN_MAIN and SN_SEPOLIA. The Network variable holds a value that matches both vocabularies at once, so this panel follows the selection like the rest of the dashboard.",
           "id": 4002,
           "links": [],
           "title": "Gateway timeouts",
@@ -3770,13 +3770,13 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "rate(block_processing_duration_seconds_count[1m]) * 60",
+                        "expr": "rate(block_processing_duration_seconds_count{network=~\"$exported_network\"}[1m]) * 60",
                         "legendFormat": "{{network}}",
                         "range": true
                       },
@@ -3790,7 +3790,7 @@
               "transformations": []
             }
           },
-          "description": "Normal is about 35 on each network. A drop to 2 or 3 followed by a burst above 70 is a real stall: the node was not getting blocks and then caught up. A dip to 15 or 20 without a burst is the chain itself producing fewer blocks, which is not a fault. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, so the Network variable at the top of the dashboard does not filter it — both networks are always shown.",
+          "description": "Normal is about 35 on each network. A drop to 2 or 3 followed by a burst above 70 is a real stall: the node was not getting blocks and then caught up. A dip to 15 or 20 without a burst is the chain itself producing fewer blocks, which is not a fault. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, while the attestation metrics use exported_network with SN_MAIN and SN_SEPOLIA. The Network variable holds a value that matches both vocabularies at once, so this panel follows the selection like the rest of the dashboard.",
           "id": 4003,
           "links": [],
           "title": "Blocks received per minute by the node",
@@ -3887,13 +3887,13 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "max_over_time(\n  (\n    timestamp(block_processing_duration_seconds_count)\n    * (rate(block_processing_duration_seconds_count[1m]) * 60 < bool 10)\n  )[24h:20s]\n) * 1000",
+                        "expr": "max_over_time(\n  (\n    timestamp(block_processing_duration_seconds_count{network=~\"$exported_network\"})\n    * (rate(block_processing_duration_seconds_count{network=~\"$exported_network\"}[1m]) * 60 < bool 10)\n  )[24h:20s]\n) * 1000",
                         "legendFormat": "{{network}}",
                         "range": true
                       },
@@ -3907,7 +3907,7 @@
               "transformations": []
             }
           },
-          "description": "Clock time of the last moment in the past day when the node stopped receiving blocks, or OK if there was no such moment. The same panel exists on the node dashboard; it is repeated here because a lost epoch is explained on this dashboard and the answer usually lies in that number. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, so the Network variable at the top of the dashboard does not filter it — both networks are always shown.",
+          "description": "Clock time of the last moment in the past day when the node stopped receiving blocks, or OK if there was no such moment. The same panel exists on the node dashboard; it is repeated here because a lost epoch is explained on this dashboard and the answer usually lies in that number. This panel reads metrics of the pathfinder node, not of the attestation tool. Those metrics carry the label network with values mainnet and testnet-sepolia, while the attestation metrics use exported_network with SN_MAIN and SN_SEPOLIA. The Network variable holds a value that matches both vocabularies at once, so this panel follows the selection like the rest of the dashboard.",
           "id": 4004,
           "links": [],
           "title": "Node stall, last 24h",
@@ -3988,7 +3988,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4082,7 +4082,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4176,7 +4176,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4266,7 +4266,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4287,7 +4287,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4403,7 +4403,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4497,7 +4497,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4609,7 +4609,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4723,7 +4723,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4809,7 +4809,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -4921,7 +4921,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -5015,7 +5015,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -5877,41 +5877,58 @@
     "title": "Validator Attestation Monitoring",
     "variables": [
       {
-        "kind": "QueryVariable",
+        "kind": "DatasourceVariable",
         "spec": {
-          "allValue": ".*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "text": "",
+            "value": ""
           },
-          "definition": "label_values(validator_attestation_starknet_latest_block_number,exported_network)",
+          "description": "Pick the Prometheus data source that holds these metrics. Every panel on this dashboard reads it from here, so nothing needs editing panel by panel.",
           "hide": "dontHide",
-          "includeAll": true,
-          "label": "Network",
-          "multi": true,
-          "name": "exported_network",
+          "includeAll": false,
+          "label": "Data source",
+          "multi": false,
+          "name": "ds",
           "options": [],
-          "query": {
-            "datasource": {
-              "name": "beo6ke2svn08wb"
-            },
-            "group": "prometheus",
-            "kind": "DataQuery",
-            "spec": {
-              "qryType": 1,
-              "query": "label_values(validator_attestation_starknet_latest_block_number,exported_network)",
-              "refId": "PrometheusVariableQueryEditor-VariableQuery"
-            },
-            "version": "v0"
-          },
-          "refresh": "onTimeRangeChanged",
+          "pluginId": "prometheus",
+          "refresh": "onDashboardLoad",
           "regex": "",
-          "regexApplyTo": "value",
-          "skipUrlSync": false,
-          "sort": "disabled"
+          "skipUrlSync": false
+        }
+      },
+      {
+        "kind": "CustomVariable",
+        "spec": {
+          "allowCustomValue": false,
+          "current": {
+            "text": "Both",
+            "value": "SN_MAIN|SN_SEPOLIA|mainnet|testnet-sepolia"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "label": "Network",
+          "multi": false,
+          "name": "exported_network",
+          "options": [
+            {
+              "selected": false,
+              "text": "Mainnet",
+              "value": "SN_MAIN|mainnet"
+            },
+            {
+              "selected": false,
+              "text": "Sepolia",
+              "value": "SN_SEPOLIA|testnet-sepolia"
+            },
+            {
+              "selected": true,
+              "text": "Both",
+              "value": "SN_MAIN|SN_SEPOLIA|mainnet|testnet-sepolia"
+            }
+          ],
+          "query": "Mainnet : SN_MAIN|mainnet,Sepolia : SN_SEPOLIA|testnet-sepolia,Both : SN_MAIN|SN_SEPOLIA|mainnet|testnet-sepolia",
+          "skipUrlSync": false
         }
       }
     ]

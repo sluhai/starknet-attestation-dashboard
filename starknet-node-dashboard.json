@@ -48,7 +48,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -152,7 +152,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -241,7 +241,7 @@
         "spec": {
           "id": 904,
           "title": "Restarts, last 24h",
-          "description": "OK means the node has not restarted in the last 24 hours. A restart resets every counter on this dashboard to zero. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia.",
+          "description": "OK means the node has not restarted in the last 24 hours. A restart resets every counter on this dashboard to zero. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia. The Network variable filters this panel by that port number, which is why its values also contain 9000 and 9001.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -254,14 +254,14 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "version": "v0",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "label_replace(\n  label_replace(\n    changes(process_start_time_seconds{job=\"pathfinder\"}[24h]),\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
+                        "expr": "label_replace(\n  label_replace(\n    changes(process_start_time_seconds{job=\"pathfinder\", instance=~\"$network\"}[24h]),\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
                         "legendFormat": "{{net}}",
                         "range": true
                       }
@@ -356,7 +356,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -426,7 +426,7 @@
         "spec": {
           "id": 104,
           "title": "Process uptime",
-          "description": "Time since the pathfinder process started; resets to zero on restart. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia.",
+          "description": "Time since the pathfinder process started; resets to zero on restart. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia. The Network variable filters this panel by that port number, which is why its values also contain 9000 and 9001.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -439,14 +439,14 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "version": "v0",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "label_replace(\n  label_replace(\n    time() - process_start_time_seconds{job=\"pathfinder\"},\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
+                        "expr": "label_replace(\n  label_replace(\n    time() - process_start_time_seconds{job=\"pathfinder\", instance=~\"$network\"},\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
                         "legendFormat": "{{net}}",
                         "range": true
                       }
@@ -521,7 +521,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -638,7 +638,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -750,7 +750,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -771,7 +771,7 @@
                     "refId": "B",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -792,7 +792,7 @@
                     "refId": "C",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -813,7 +813,7 @@
                     "refId": "D",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -929,7 +929,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1045,7 +1045,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1132,7 +1132,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1245,7 +1245,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1362,7 +1362,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1478,7 +1478,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1594,7 +1594,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1615,7 +1615,7 @@
                     "refId": "B",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1727,7 +1727,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1814,7 +1814,7 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -1902,7 +1902,7 @@
         "spec": {
           "id": 906,
           "title": "Node running",
-          "description": "Whether Prometheus can reach the pathfinder process right now. DOWN means the process is gone or its metrics port is closed, and the other panels on this dashboard go stale rather than red. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia.",
+          "description": "Whether Prometheus can reach the pathfinder process right now. DOWN means the process is gone or its metrics port is closed, and the other panels on this dashboard go stale rather than red. The network name is derived from the scrape port, because this metric carries no network label: 9000 is mainnet, 9001 is sepolia. The Network variable filters this panel by that port number, which is why its values also contain 9000 and 9001.",
           "links": [],
           "data": {
             "kind": "QueryGroup",
@@ -1915,14 +1915,14 @@
                     "refId": "A",
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
                       "version": "v0",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "label_replace(\n  label_replace(\n    up{job=\"pathfinder\"},\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
+                        "expr": "label_replace(\n  label_replace(\n    up{job=\"pathfinder\", instance=~\"$network\"},\n    \"net\", \"mainnet\", \"instance\", \".*:9000\"\n  ),\n  \"net\", \"sepolia\", \"instance\", \".*:9001\"\n)",
                         "legendFormat": "{{net}}",
                         "range": true
                       }
@@ -2017,7 +2017,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2123,7 +2123,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2236,7 +2236,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2257,7 +2257,7 @@
                     "hidden": false,
                     "query": {
                       "datasource": {
-                        "name": "beo6ke2svn08wb"
+                        "name": "${ds}"
                       },
                       "group": "prometheus",
                       "kind": "DataQuery",
@@ -2277,7 +2277,7 @@
               "transformations": []
             }
           },
-          "description": "Left value: connections closed in the last 24 hours, split by the reason pathfinder reports. Right value: upgrade requests refused because the concurrent connection limit was reached; the default limit is 1024 and with one attestation tool this should stay at zero. An empty panel reading No data means no connection was closed and none was refused — nothing happened, not a broken panel. The counters come into existence at the first such event, so until then there is no series to draw. Two closes per network are expected after every restart of the node, including a version update, and are not a fault. The Network variable does not filter this panel: whether these two metrics carry a network label has not been checked, so the query groups by whatever labels exist. Requires pathfinder 0.24.0 or newer.",
+          "description": "Left value: connections closed in the last 24 hours, split by the reason pathfinder reports. Right value: upgrade requests refused because the concurrent connection limit was reached; the default limit is 1024 and with one attestation tool this should stay at zero. An empty panel reading No data means no connection was closed and none was refused - nothing happened, not a broken panel. Checked on 5 September 2026: neither counter has ever existed in this Prometheus, not one series in 30 days, so their labels cannot be read and the Network variable is deliberately not applied here. Filtering on a label that may not exist would hide the very event this panel is for. The sibling metric rpc_websocket_connections does carry the network label. Requires pathfinder 0.24.0 or newer.",
           "id": 405,
           "links": [],
           "title": "Websocket closes and rejects, last 24h",
@@ -2718,41 +2718,58 @@
     "title": "Pathfinder Node Health",
     "variables": [
       {
-        "kind": "QueryVariable",
+        "kind": "DatasourceVariable",
         "spec": {
-          "allValue": ".*",
-          "allowCustomValue": true,
+          "allowCustomValue": false,
           "current": {
-            "text": "All",
-            "value": [
-              "$__all"
-            ]
+            "text": "",
+            "value": ""
           },
-          "definition": "label_values(current_block,network)",
+          "description": "Pick the Prometheus data source that holds these metrics. Every panel on this dashboard reads it from here, so nothing needs editing panel by panel.",
           "hide": "dontHide",
-          "includeAll": true,
-          "label": "Network",
-          "multi": true,
-          "name": "network",
+          "includeAll": false,
+          "label": "Data source",
+          "multi": false,
+          "name": "ds",
           "options": [],
-          "query": {
-            "datasource": {
-              "name": "beo6ke2svn08wb"
-            },
-            "group": "prometheus",
-            "kind": "DataQuery",
-            "version": "v0",
-            "spec": {
-              "qryType": 1,
-              "query": "label_values(current_block,network)",
-              "refId": "PrometheusVariableQueryEditor-VariableQuery"
-            }
-          },
-          "refresh": "onTimeRangeChanged",
+          "pluginId": "prometheus",
+          "refresh": "onDashboardLoad",
           "regex": "",
-          "regexApplyTo": "value",
-          "skipUrlSync": false,
-          "sort": "disabled"
+          "skipUrlSync": false
+        }
+      },
+      {
+        "kind": "CustomVariable",
+        "spec": {
+          "allowCustomValue": false,
+          "current": {
+            "text": "Both",
+            "value": "mainnet|testnet-sepolia|.*9000|.*9001"
+          },
+          "hide": "dontHide",
+          "includeAll": false,
+          "label": "Network",
+          "multi": false,
+          "name": "network",
+          "options": [
+            {
+              "selected": false,
+              "text": "Mainnet",
+              "value": "mainnet|.*9000"
+            },
+            {
+              "selected": false,
+              "text": "Sepolia",
+              "value": "testnet-sepolia|.*9001"
+            },
+            {
+              "selected": true,
+              "text": "Both",
+              "value": "mainnet|testnet-sepolia|.*9000|.*9001"
+            }
+          ],
+          "query": "Mainnet : mainnet|.*9000,Sepolia : testnet-sepolia|.*9001,Both : mainnet|testnet-sepolia|.*9000|.*9001",
+          "skipUrlSync": false
         }
       }
     ]
