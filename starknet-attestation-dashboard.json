@@ -3452,7 +3452,7 @@
                       "kind": "DataQuery",
                       "spec": {
                         "editorMode": "code",
-                        "expr": "(validator_attestation_current_epoch_id{exported_network=~\"$exported_network\"} - (validator_attestation_current_epoch_id{exported_network=~\"$exported_network\"} offset 24h)) - increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[24h])",
+                        "expr": "clamp_min(\n  (validator_attestation_current_epoch_id{exported_network=~\"$exported_network\"} - (validator_attestation_current_epoch_id{exported_network=~\"$exported_network\"} offset 24h))\n  - increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[24h]),\n  0\n)",
                         "legendFormat": "{{exported_network}}",
                         "range": true
                       },
@@ -3466,7 +3466,7 @@
               "transformations": []
             }
           },
-          "description": "Epochs the network completed in the last day minus attestations confirmed in it. Zero means every epoch was attested. This is the same fact as missed epochs, computed from the other side, and the two should agree; a disagreement means one of the counters is not telling the whole story.",
+          "description": "Epochs the network completed in the last day minus attestations confirmed in it. Zero means every epoch was attested. The two are separate event streams: an epoch boundary is a moment on chain, while a confirmation lands at a random block inside the epoch, so the edge of a 24-hour window can catch one more or one less of either. A reading of 1 is that boundary effect, not a missed epoch. Measured twice 50 seconds apart on 5 September 2026, the raw value moved from -1 to 0 with nothing changing on chain. Negative results are clamped to zero, because a negative count of unattested epochs has no meaning. The colour turns only at 2 and above. The tool's own count is in Missed epochs; this panel is the independent cross-check that would catch an epoch the tool did not notice at all.",
           "id": 4014,
           "links": [],
           "title": "Epochs without attestation, 24h",
@@ -3489,11 +3489,11 @@
                       },
                       {
                         "color": "orange",
-                        "value": 1
+                        "value": 2
                       },
                       {
                         "color": "red",
-                        "value": 2
+                        "value": 3
                       }
                     ]
                   },
