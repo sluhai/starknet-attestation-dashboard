@@ -100,4 +100,5 @@ labels cannot be counted on, and filtering could hide the rare event the panel i
 Attestation dashboard: `Success rate, 30 days`, `Success rate, 90 days` and `Missed epochs, 90 days` need
 that much history to mean what they say. Grafana Cloud on the free plan keeps 14 days — the two rates then
 stay correct as ratios but cover less time than their titles claim, and the missed-epoch count comes out
-short. Delete them there, or read them knowing that.
+short. Delete them there, or read them knowing that. `Success rate, 14 days` is in the row for exactly that
+case: on a store that keeps a fortnight it is the longest window that still means what it says.

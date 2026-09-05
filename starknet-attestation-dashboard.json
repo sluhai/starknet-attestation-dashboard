@@ -4057,10 +4057,6 @@
                   "values": false
                 },
                 "showPercentChange": false,
-                "text": {
-                  "titleSize": 14,
-                  "valueSize": 32
-                },
                 "textMode": "auto",
                 "wideLayout": true
               }
@@ -4151,10 +4147,6 @@
                   "values": false
                 },
                 "showPercentChange": false,
-                "text": {
-                  "titleSize": 14,
-                  "valueSize": 32
-                },
                 "textMode": "auto",
                 "wideLayout": true
               }
@@ -4990,10 +4982,6 @@
                   "values": false
                 },
                 "showPercentChange": false,
-                "text": {
-                  "titleSize": 14,
-                  "valueSize": 32
-                },
                 "textMode": "auto",
                 "wideLayout": true
               }
@@ -5076,10 +5064,96 @@
                   "values": false
                 },
                 "showPercentChange": false,
-                "text": {
-                  "titleSize": 14,
-                  "valueSize": 32
+                "textMode": "auto",
+                "wideLayout": true
+              }
+            },
+            "version": "13.2.0"
+          }
+        }
+      },
+      "panel-4017": {
+        "kind": "Panel",
+        "spec": {
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [
+                {
+                  "kind": "PanelQuery",
+                  "spec": {
+                    "hidden": false,
+                    "query": {
+                      "datasource": {
+                        "name": "${ds}"
+                      },
+                      "group": "prometheus",
+                      "kind": "DataQuery",
+                      "spec": {
+                        "editorMode": "code",
+                        "expr": "(increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[14d]) / (increase(validator_attestation_attestation_confirmed_count{exported_network=~\"$exported_network\"}[14d]) + increase(validator_attestation_missed_epochs_count{exported_network=~\"$exported_network\"}[14d]))) * 100",
+                        "legendFormat": "{{exported_network}}",
+                        "range": true
+                      },
+                      "version": "v0"
+                    },
+                    "refId": "A"
+                  }
+                }
+              ],
+              "queryOptions": {},
+              "transformations": []
+            }
+          },
+          "description": "Confirmed attestations over confirmed plus missed, across the last fourteen days. The delegation program requires 99 percent liveness on both networks, so this is the number that matters for it. Fourteen days is the retention of Grafana Cloud on the free plan, which is why this window exists: on a store that keeps only two weeks it is the longest honest window. It sits right at the edge of that retention, so the coverage can fall a few hours short of the full fourteen days; the ratio itself stays correct either way, because numerator and denominator are computed over the same range.",
+          "id": 4017,
+          "links": [],
+          "title": "Success rate, 14 days",
+          "vizConfig": {
+            "group": "stat",
+            "kind": "VizConfig",
+            "spec": {
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 3,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "red",
+                        "value": 0
+                      },
+                      {
+                        "color": "orange",
+                        "value": 99
+                      },
+                      {
+                        "color": "green",
+                        "value": 99.5
+                      }
+                    ]
+                  },
+                  "unit": "percent"
                 },
+                "overrides": []
+              },
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "percentChangeColorMode": "standard",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showPercentChange": false,
                 "textMode": "auto",
                 "wideLayout": true
               }
@@ -5555,8 +5629,21 @@
                           "name": "panel-4009"
                         },
                         "height": 4,
-                        "width": 6,
+                        "width": 5,
                         "x": 0,
+                        "y": 0
+                      }
+                    },
+                    {
+                      "kind": "GridLayoutItem",
+                      "spec": {
+                        "element": {
+                          "kind": "ElementReference",
+                          "name": "panel-4017"
+                        },
+                        "height": 4,
+                        "width": 5,
+                        "x": 5,
                         "y": 0
                       }
                     },
@@ -5568,8 +5655,8 @@
                           "name": "panel-4010"
                         },
                         "height": 4,
-                        "width": 6,
-                        "x": 6,
+                        "width": 5,
+                        "x": 10,
                         "y": 0
                       }
                     },
@@ -5581,8 +5668,8 @@
                           "name": "panel-4015"
                         },
                         "height": 4,
-                        "width": 6,
-                        "x": 12,
+                        "width": 5,
+                        "x": 15,
                         "y": 0
                       }
                     },
@@ -5594,8 +5681,8 @@
                           "name": "panel-4016"
                         },
                         "height": 4,
-                        "width": 6,
-                        "x": 18,
+                        "width": 4,
+                        "x": 20,
                         "y": 0
                       }
                     }
